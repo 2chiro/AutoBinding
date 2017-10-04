@@ -1,33 +1,34 @@
 package nishimoto.yoshiken;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestFileWrite {
 	public static void output(String path){
 		File file = new File(path);
 		try {
-			FileWriter fw = new FileWriter(file);
+			file.createNewFile();
+			FileWriter filewriter = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(filewriter);
+			PrintWriter pw = new PrintWriter(bw);
 
 			int[][] reg = RegisterLEA.getRegs();
 
-			for(int i = 0; i > reg.length; i++){
-				if(reg[i] == null){
-					break;
+			for(int i = 0; i < reg.length; i++){
+				int num = i + 1;
+				pw.print(num);
+				for(int j = 0; j < reg[i].length; j++){
+					pw.print(" " + reg[i][j]);
 				}
-				fw.write(i + 1);
-				for(int j = 0; j > reg[i].length; j++){
-					fw.write(" " + reg[i][j]);
-				}
-				fw.write("\n");
+				pw.print("\n");
 			}
-			fw.close();
-
-		} catch (IOException e) {
+			pw.close();
+		} catch (IOException e1) {
 			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-
 	}
 }

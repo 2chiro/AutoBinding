@@ -114,7 +114,7 @@ public class Main extends JFrame implements ActionListener{
 		int selected1 = fc1.showSaveDialog(this);
 		if(selected1 == JFileChooser.APPROVE_OPTION){
 			File file1 = fc1.getSelectedFile();
-			outname = file1.getName();
+			outname = file1.getAbsolutePath();
 		}
 		TestFileRead.imput(getPath());
 		TestFileRead.dataArrange();
