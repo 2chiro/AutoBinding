@@ -4,9 +4,18 @@ import java.util.ArrayList;
 
 public class RegisterLEA {
 	private static int[][] regs;
+	private static int lines;
 
 	public static int[][] getRegs(){
 		return regs;
+	}
+
+	public static int getLines(){
+		return lines;
+	}
+
+	public static void setLines(int k){
+		lines = k;
 	}
 
 	public static void Basic(int[] edgeId, int[] start, int[] end){
@@ -40,7 +49,6 @@ public class RegisterLEA {
 
 				watermark = end[y];
 				regs[t][h] = y;
-				System.out.println("regs["+t+"]"+"["+h+"]="+regs[t][h]);
 
 				h = h + 1;
 
@@ -58,6 +66,7 @@ public class RegisterLEA {
 					check = false;
 					break;
 				}
+				setLines(t);
 				check = true;
 			}
 		}

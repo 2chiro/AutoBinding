@@ -17,13 +17,25 @@ public class TestFileWrite {
 
 			int[][] reg = RegisterLEA.getRegs();
 
+			boolean zerosearch = false;
+
 			for(int i = 0; i < reg.length; i++){
-				int num = i + 1;
-				pw.print(num);
-				for(int j = 0; j < reg[i].length; j++){
-					pw.print(" " + reg[i][j]);
+				if(i < RegisterLEA.getLines()){
+					int num = i + 1;
+					pw.print(num);
+					for(int j = 0; j < reg[i].length; j++){
+						if(reg[i][j]==0){
+							if(zerosearch == false){
+								pw.print(" " + reg[i][j]);
+								zerosearch = true;
+							}
+						}
+						else{
+							pw.print(" " + reg[i][j]);
+						}
+					}
+					pw.print("\n");
 				}
-				pw.print("\n");
 			}
 			pw.close();
 		} catch (IOException e1) {
