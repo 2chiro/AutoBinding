@@ -59,6 +59,10 @@ public class RegisterLEA {
 				xs.clear();
 			}
 
+			for(int p = h; p < edgeId.length; p++){
+				regs[t][p] = -1;
+			}
+
 			t = t + 1;
 
 			for(int i = 0; i < edgeId.length; i++){
