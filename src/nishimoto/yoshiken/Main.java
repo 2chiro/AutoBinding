@@ -119,9 +119,19 @@ public class Main extends JFrame implements ActionListener{
 		}
 		TestFileRead.imput(getPath());
 		TestFileRead.dataArrange();
+
 		int[] ei = TestFileRead.getEdge();
 		int[] st = TestFileRead.getStart();
 		int[] ed = TestFileRead.getEnd();
+		int[] vt = TestFileRead.getVertex();
+		String[] ty = TestFileRead.getType();
+		int[] lf = TestFileRead.getLife();
+		int a = TestFileRead.getAdd();
+		int s = TestFileRead.getSub();
+		int m = TestFileRead.getMult();
+		int c = TestFileRead.getComp();
+
+		OperationClique.Basic(a, s, m, c, vt, ty, lf);
 		RegisterLEA.Basic(ei, st, ed);
 		TestFileWrite.output(outname);
 	}
