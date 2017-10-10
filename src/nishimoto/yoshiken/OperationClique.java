@@ -47,87 +47,115 @@ public class OperationClique {
 			}
 		}
 
-		//加算割当
-		if(add != 0){
+		int[] addlist = new int[addmap.size()]; int[] addtime = new int[addmap.size()];
+		int[] sublist = new int[submap.size()]; int[] subtime = new int[submap.size()];
+		int[] multlist = new int[multmap.size()]; int[]multtime = new int[multmap.size()];
+		int[] complist = new int[compmap.size()]; int[] comptime = new int[compmap.size()];
+
+		//加算割当-修正
+		if(!addmap.isEmpty()){
 			addops = new int[add][endtime];
+			int k = 0;
+			for(int key : addmap.keySet()){
+				addlist[k] = key;
+				addtime[k] = addmap.get(key);
+				k = k + 1;
+			}
 			for(int j = 1; j <= endtime; j++){
 				int m = 0;
-				for(int k : addmap.keySet()){
-					if(j == addmap.get(k)){
-						addops[m][j-1] = k;
-						System.out.println("addops[" + m + "][" + (j-1) + "]" +addops[m][j-1]);
-						addmap.remove(k);
+				for(int n = 0; n < addlist.length; n++){
+					if(addtime[n] == j){
+						addops[m][j-1] = addlist[n];
+						addlist[n] = -1; addtime[n] = -1;
 						m = m + 1;
-						if(add < m + 1){
-							//エラー処理
-						}
+					}
+					if(add < m + 1){
+						//エラー処理
 					}
 				}
-				for(int n = m; n < addops.length; n++){
-					addops[n][j-1] = -1;
+				for(int c = m; c < addops.length; c++){
+					addops[c][j-1] = -1;
 				}
 			}
 		}
 
-		//減算割当
-		if(sub != 0){
+		//減算割当-修正
+		if(!submap.isEmpty()){
 			subops = new int[sub][endtime];
+			int k = 0;
+			for(int key : submap.keySet()){
+				sublist[k] = key;
+				subtime[k] = submap.get(key);
+				k = k + 1;
+			}
 			for(int j = 1; j <= endtime; j++){
 				int m = 0;
-				for(int k : submap.keySet()){
-					if(j == submap.get(k)){
-						subops[m][j-1] = k;
-						submap.remove(k);
+				for(int n = 0; n < sublist.length; n++){
+					if(subtime[n] == j){
+						subops[m][j-1] = sublist[n];
+						sublist[n] = -1; subtime[n] = -1;
 						m = m + 1;
-						if(sub < m + 1){
-							//エラー処理
-						}
+					}
+					if(sub < m + 1){
+						//エラー処理
 					}
 				}
-				for(int n = m; n < subops.length; n++){
-					subops[n][j-1] = -1;
+				for(int c = m; c < subops.length; c++){
+					subops[c][j-1] = -1;
 				}
 			}
 		}
 
-		//乗算割当
-		if(mult != 0){
+		//乗算割当-修正
+		if(!multmap.isEmpty()){
 			multops = new int[mult][endtime];
+			int k = 0;
+			for(int key : multmap.keySet()){
+				multlist[k] = key;
+				multtime[k] = multmap.get(key);
+				k = k + 1;
+			}
 			for(int j = 1; j <= endtime; j++){
 				int m = 0;
-				for(int k : multmap.keySet()){
-					if(j == multmap.get(k)){
-						multops[m][j-1] = k;
-						multmap.remove(k);
+				for(int n = 0; n < multlist.length; n++){
+					if(multtime[n] == j){
+						multops[m][j-1] = multlist[n];
+						multlist[n] = -1; multtime[n] = -1;
 						m = m + 1;
-						if(mult < m + 1){
-							//エラー処理
-						}
+					}
+					if(mult < m + 1){
+						//エラー処理
 					}
 				}
-				for(int n = m; n < multops.length; n++){
-					multops[n][j-1] = -1;
+				for(int c = m; c < multops.length; c++){
+					multops[c][j-1] = -1;
 				}
 			}
 		}
 
-		//除算割当
-		if(comp != 0){
+		//除算割当-修正
+		if(!compmap.isEmpty()){
 			compops = new int[comp][endtime];
+			int k = 0;
+			for(int key : compmap.keySet()){
+				complist[k] = key;
+				comptime[k] = compmap.get(key);
+				k = k + 1;
+			}
 			for(int j = 1; j <= endtime; j++){
 				int m = 0;
-				for(int k : compmap.keySet()){
-					if(j == compmap.get(k)){
-						compops[m][j-1] = k;
-						compmap.remove(k);
+				for(int n = 0; n < complist.length; n++){
+					if(comptime[n] == j){
+						compops[m][j-1] = complist[n];
+						complist[n] = -1; comptime[n] = -1;
 						m = m + 1;
-						if(comp < m + 1){
-							//エラー処理
-						}
+					}
+					if(comp < m + 1){
+						//エラー処理
 					}
 				}
-				for(int n = m; n < compops.length; n++){
-					compops[n][j-1] = -1;
+				for(int c = m; c < compops.length; c++){
+					compops[c][j-1] = -1;
 				}
 			}
 		}
