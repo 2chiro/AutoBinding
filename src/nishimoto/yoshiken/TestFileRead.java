@@ -50,7 +50,7 @@ public class TestFileRead {
 		return comp;
 	}
 
-	public static void imput(String path){
+	public static void input(String path){
 		ims_a = null;
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -60,6 +60,8 @@ public class TestFileRead {
 			br = new BufferedReader(fr);
 			String line;
 			while((line = br.readLine()) != null){
+				line = line.trim();
+				line = line.replaceAll("  *", " ");
 				ims.add(line);
 			}
 			ims_a = new String[ims.size()];
@@ -147,10 +149,14 @@ public class TestFileRead {
 				ha = true;
 			}
 			if(b == '#'){
+				imars[0] = imars[0].replaceAll("#", "");
 				for(int k = 0; k < imars.length; k++){
 					String[] imarse = imars[k].split(">",0);
-					if(imarse[0].equals("#adder=")){
+					if(imarse[0].equals("adder=")){
 						add = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("subtractor=")){
+						sub = Integer.parseInt(imarse[1]);
 					}
 					else if(imarse[0].equals("multiplier=")){
 						mult = Integer.parseInt(imarse[1]);

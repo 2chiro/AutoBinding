@@ -117,7 +117,7 @@ public class Main extends JFrame implements ActionListener{
 			File file1 = fc1.getSelectedFile();
 			outname = file1.getAbsolutePath();
 		}
-		TestFileRead.imput(getPath());
+		TestFileRead.input(getPath());
 		TestFileRead.dataArrange();
 
 		int[] ei = TestFileRead.getEdge();
@@ -134,5 +134,6 @@ public class Main extends JFrame implements ActionListener{
 		OperationLEA.Basic(a, s, m, c, vt, ty, lf);
 		RegisterLEA.Basic(ei, st, ed);
 		TestFileWrite.output(outname);
+		TestFileRead.resetRC();
 	}
 }

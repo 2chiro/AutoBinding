@@ -53,7 +53,7 @@ public class OperationLEA {
 		int[] complist = new int[compmap.size()]; int[] comptime = new int[compmap.size()];
 
 		//加算割当-修正
-		if(!addmap.isEmpty()){
+		if(add != 0){
 			addops = new int[add][endtime];
 			int k = 0;
 			for(int key : addmap.keySet()){
@@ -80,7 +80,7 @@ public class OperationLEA {
 		}
 
 		//減算割当-修正
-		if(!submap.isEmpty()){
+		if(sub != 0){
 			subops = new int[sub][endtime];
 			int k = 0;
 			for(int key : submap.keySet()){
@@ -107,7 +107,7 @@ public class OperationLEA {
 		}
 
 		//乗算割当-修正
-		if(!multmap.isEmpty()){
+		if(mult != 0){
 			multops = new int[mult][endtime];
 			int k = 0;
 			for(int key : multmap.keySet()){
@@ -134,7 +134,7 @@ public class OperationLEA {
 		}
 
 		//除算割当-修正
-		if(!compmap.isEmpty()){
+		if(comp != 0){
 			compops = new int[comp][endtime];
 			int k = 0;
 			for(int key : compmap.keySet()){
