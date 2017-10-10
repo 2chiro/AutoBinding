@@ -35,12 +35,14 @@ public class TestFileWrite {
 					pw.print(num);
 					for(int j = 0; j < reg[i].length; j++){
 						if(reg[i][j] != -1){
-							pw.print(" " + reg[i][j]);
+							pw.print("   " + reg[i][j]);
 						}
 					}
 					pw.print("\n");
 				}
 			}
+
+			pw.println("Calculator");
 
 			//加算器割当出力
 			if(TestFileRead.getAdd() != 0){
@@ -49,7 +51,7 @@ public class TestFileWrite {
 					pw.print("Add" + num);
 					for(int j = 0; j < addop[i].length; j++){
 						if(addop[i][j] != -1){
-							pw.print(" " + addop[i][j]);
+							pw.print("   " + addop[i][j]);
 						}
 					}
 					pw.print("\n");
@@ -63,7 +65,7 @@ public class TestFileWrite {
 					pw.print("Sub" + num);
 					for(int j = 0; j < subop[i].length; j++){
 						if(subop[i][j] != -1){
-							pw.print(" " + subop[i][j]);
+							pw.print("   " + subop[i][j]);
 						}
 					}
 					pw.print("\n");
@@ -77,7 +79,7 @@ public class TestFileWrite {
 					pw.print("Mul" + num);
 					for(int j = 0; j < multop[i].length; j++){
 						if(multop[i][j] != -1){
-							pw.print(" " + multop[i][j]);
+							pw.print("   " + multop[i][j]);
 						}
 					}
 					pw.print("\n");

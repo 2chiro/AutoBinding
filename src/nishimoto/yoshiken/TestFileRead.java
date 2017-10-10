@@ -152,6 +152,9 @@ public class TestFileRead {
 					if(imarse[0].equals("#adder=")){
 						add = Integer.parseInt(imarse[1]);
 					}
+					else if(imarse[0].equals("multiplier=")){
+						mult = Integer.parseInt(imarse[1]);
+					}
 				}
 				ha = true;
 			}
