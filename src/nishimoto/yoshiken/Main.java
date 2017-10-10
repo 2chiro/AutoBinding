@@ -131,7 +131,7 @@ public class Main extends JFrame implements ActionListener{
 		int m = TestFileRead.getMult();
 		int c = TestFileRead.getComp();
 
-		OperationClique.Basic(a, s, m, c, vt, ty, lf);
+		OperationLEA.Basic(a, s, m, c, vt, ty, lf);
 		RegisterLEA.Basic(ei, st, ed);
 		TestFileWrite.output(outname);
 	}

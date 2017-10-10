@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OperationClique {
+public class OperationLEA {
 	private static int[][] addops;
 	private static int[][] subops;
 	private static int[][] multops;

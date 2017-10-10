@@ -16,10 +16,10 @@ public class TestFileWrite {
 			PrintWriter pw = new PrintWriter(bw);
 
 			int[][] reg = RegisterLEA.getRegs();
-			int[][] addop = OperationClique.getAddops();
-			int[][] subop = OperationClique.getAddops();
-			int[][] multop = OperationClique.getMultops();
-			int[][] compop = OperationClique.getCompops();
+			int[][] addop = OperationLEA.getAddops();
+			int[][] subop = OperationLEA.getAddops();
+			int[][] multop = OperationLEA.getMultops();
+			int[][] compop = OperationLEA.getCompops();
 
 			//レジスタ＆演算器の数出力
 			pw.println("Register." + String.format("%1$5d", RegisterLEA.getLines()));
