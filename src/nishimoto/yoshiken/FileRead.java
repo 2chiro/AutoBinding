@@ -4,34 +4,72 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FileRead {
-	public String[] ims;
-	public int[] verids;
-	public char[] types;
-	public int[] lifetimes;
-	public int[] edgids;
-	public int[] ver1s;
-	public int[] ver2s;
-	public char[] ports;
+	private static String[] ims_a;
+	private static int[] vertex;
+	private static String[] type;
+	private static int[] life;
+	private static int[] edge;
+	private static int[] ver1;
+	private static int[] ver2;
+	private static int add = 0;
+	private static int sub = 0;
+	private static int mult = 0;
+	private static int div = 0;
 
-	public void fr(){
-		imput();
-		dataArrange();
+	public static int[] getVertex(){
+		return vertex;
+	}
+	public static String[] getType(){
+		return type;
+	}
+	public static int[] getLife(){
+		return life;
+	}
+	public static int[] getEdge(){
+		return edge;
+	}
+	public static int[] getVer1(){
+		return ver1;
+	}
+	public static int[] getVer2(){
+		return ver2;
+	}
+	public static int getAdd(){
+		return add;
+	}
+	public static int getSub(){
+		return sub;
+	}
+	public static int getMult(){
+		return mult;
+	}
+	public static int getDiv(){
+		return div;
 	}
 
-	public void imput(){
-		ims = null;
+	public static void input(String path){
+		ims_a = null;
 		FileReader fr = null;
 		BufferedReader br = null;
+		ArrayList<String> ims = new ArrayList<String>();
 		try {
-			fr = new FileReader("test.sdfg");
+			fr = new FileReader(path);
 			br = new BufferedReader(fr);
 			String line;
-			int i = 0;
 			while((line = br.readLine()) != null){
-				ims[i] = line;
-				i++;
+				line = line.replaceAll("\t", " ");
+				line = line.trim();
+				line = line.replaceAll("  *", " ");
+				if(line.length() > 0){
+					ims.add(line);
+				}
+			}
+			ims_a = new String[ims.size()];
+			for(int i = 0; i < ims.size(); i++){
+				ims_a[i] = ims.get(i);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -47,46 +85,121 @@ public class FileRead {
 			}
 		}
 	}
-	public void dataArrange(){
-		String[] imars = null;
-		verids = null;
-		types = null;
-		lifetimes = null;
-		edgids = null;
-		ver1s = null;
-		ver2s = null;
-		ports = null;
-		boolean ve = false;
-		boolean de = false;
-		int ven = 0;
-		int den = 0;
-		for(int i = 0; i < ims.length; i++){
-			String d = ims[i];
 
-			if(d.equals("---vertex")){
-				ve = true;
-				de = false;
-				continue;
+	public static void dataArrange(){
+		boolean v = false;
+		boolean l = false;
+		int vi = 0;
+		int li = 0;
+		for(int i = 0; i < ims_a.length; i++){
+			String a = ims_a[i];
+			System.out.println(a);
+			boolean ha = false;
+			char d = 0;
+			if(a.length() > 0){
+				d = a.charAt(0);
 			}
-			else if(d.equals("--edge")){
-				de = true;
-				ve = false;
-				continue;
+			else{
+				ha = true;
 			}
-			if(ve == true){
-				imars = d.split("\\s", 0);
-				verids[ven] = Integer.parseInt(imars[0]);
-				types[ven] = imars[1].charAt(0);
-				lifetimes[ven] = Integer.parseInt(imars[2]);
-				ven++;
+			if(a.equals("--vertex")){
+				v = true;
+				l = false;
+				ha = true;
 			}
-			else if(de == true){
-				imars = d.split("\\s", 0);
-				edgids[den] = Integer.parseInt(imars[0]);
-				ver1s[den] = Integer.parseInt(imars[1]);
-				ver2s[den] = Integer.parseInt(imars[2]);
-				ports[den] = imars[3].charAt(0);
+			else if(a.equals("--edge")){
+				v = false;
+				l = true;
+				ha = true;
+			}
+			else if(a.equals("--exclusive block")){
+				ha = true;
+			}
+			if(!ha){
+				if(d != '#'){
+					if(v){
+						vi = vi + 1;
+					}
+					else if(l){
+						li = li + 1;
+					}
+				}
 			}
 		}
+
+		vertex = new int[vi];
+		type = new String[vi];
+		life = new int[vi];
+		edge = new int[li];
+		ver1 = new int[li];
+		ver2 = new int[li];
+
+		int ve = 0;
+		int le = 0;
+
+		for(int i = 0; i < ims_a.length; i++){
+			String d = ims_a[i];
+			boolean ha = false;
+			char b = 0;
+			if(d.length() > 0){
+				b = d.charAt(0);
+			}
+			else{
+				ha = true;
+			}
+			if(d.equals("--exclusive block")){
+				v = false;
+				l = false;
+				ha = true;
+			}
+			String[] imars = d.split("\\s", 0);
+			if(imars[0].equals("--vertex")){
+				v = true;
+				l = false;
+				ha = true;
+			}
+			else if(imars[0].equals("--edge")){
+				v = false;
+				l = true;
+				ha = true;
+			}
+			if(b == '#'){
+				imars[0] = imars[0].replaceAll("#", "");
+				for(int k = 0; k < imars.length; k++){
+					String[] imarse = imars[k].split(">",0);
+					if(imarse[0].equals("adder=")){
+						add = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("subtractor=")){
+						sub = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("multiplier=")){
+						mult = Integer.parseInt(imarse[1]);
+					}
+				}
+				ha = true;
+			}
+			if(!ha){
+				if(v){
+					vertex[ve] = Integer.parseInt(imars[0]);
+					type[ve] = imars[1];
+					life[ve] = Integer.parseInt(imars[2]);
+					ve = ve + 1;
+				}
+				else if(l){
+					edge[le] = Integer.parseInt(imars[0]);
+					ver1[le] = Integer.parseInt(imars[1]);
+					ver2[le] = Integer.parseInt(imars[2]);
+					le = le + 1;
+				}
+			}
+		}
+	}
+
+	public static void resetRC(){
+		add = 0;
+		sub = 0;
+		mult = 0;
+		div = 0;
 	}
 }

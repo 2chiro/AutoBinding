@@ -1,6 +1,5 @@
 package nishimoto.yoshiken;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +7,7 @@ public class OperationLEA {
 	private static int[][] addops;
 	private static int[][] subops;
 	private static int[][] multops;
-	private static int[][] compops;
+	private static int[][] divops;
 
 	public static int[][] getAddops(){
 		return addops;
@@ -19,15 +18,15 @@ public class OperationLEA {
 	public static int[][] getMultops(){
 		return multops;
 	}
-	public static int[][] getCompops(){
-		return compops;
+	public static int[][] getDivops(){
+		return divops;
 	}
 
-	public static void Basic(int add, int sub, int mult, int comp, int[] vertexId, String[] type, int[] lifetime){
-		Map<Integer, Integer> addmap = Collections.synchronizedMap(new HashMap<Integer, Integer>());
+	public static void Basic(int add, int sub, int mult, int div, int[] vertexId, String[] type, int[] lifetime){
+		Map<Integer, Integer> addmap = new HashMap<Integer, Integer>();
 		Map<Integer, Integer> submap = new HashMap<Integer, Integer>();
 		Map<Integer, Integer> multmap = new HashMap<Integer, Integer>();
-		Map<Integer, Integer> compmap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> divmap = new HashMap<Integer, Integer>();
 		int endtime = 0;
 		for(int i = 0; i < vertexId.length; i++){
 			if("A".equals(type[i])){
@@ -39,8 +38,8 @@ public class OperationLEA {
 			else if("M".equals(type[i])){
 				multmap.put(vertexId[i], lifetime[i]);
 			}
-			else if("C".equals(type[i])){
-				compmap.put(vertexId[i], lifetime[i]);
+			else if("D".equals(type[i])){
+				divmap.put(vertexId[i], lifetime[i]);
 			}
 			if(endtime < lifetime[i]){
 				endtime = lifetime[i];
@@ -50,7 +49,7 @@ public class OperationLEA {
 		int[] addlist = new int[addmap.size()]; int[] addtime = new int[addmap.size()];
 		int[] sublist = new int[submap.size()]; int[] subtime = new int[submap.size()];
 		int[] multlist = new int[multmap.size()]; int[]multtime = new int[multmap.size()];
-		int[] complist = new int[compmap.size()]; int[] comptime = new int[compmap.size()];
+		int[] divlist = new int[divmap.size()]; int[] divtime = new int[divmap.size()];
 
 		//加算割当-修正
 		if(add != 0){
@@ -134,28 +133,28 @@ public class OperationLEA {
 		}
 
 		//除算割当-修正
-		if(comp != 0){
-			compops = new int[comp][endtime];
+		if(div != 0){
+			divops = new int[div][endtime];
 			int k = 0;
-			for(int key : compmap.keySet()){
-				complist[k] = key;
-				comptime[k] = compmap.get(key);
+			for(int key : divmap.keySet()){
+				divlist[k] = key;
+				divtime[k] = divmap.get(key);
 				k = k + 1;
 			}
 			for(int j = 1; j <= endtime; j++){
 				int m = 0;
-				for(int n = 0; n < complist.length; n++){
-					if(comptime[n] == j){
-						compops[m][j-1] = complist[n];
-						complist[n] = -1; comptime[n] = -1;
+				for(int n = 0; n < divlist.length; n++){
+					if(divtime[n] == j){
+						divops[m][j-1] = divlist[n];
+						divlist[n] = -1; divtime[n] = -1;
 						m = m + 1;
 					}
-					if(comp < m + 1){
+					if(div < m + 1){
 						//エラー処理
 					}
 				}
-				for(int c = m; c < compops.length; c++){
-					compops[c][j-1] = -1;
+				for(int c = m; c < divops.length; c++){
+					divops[c][j-1] = -1;
 				}
 			}
 		}

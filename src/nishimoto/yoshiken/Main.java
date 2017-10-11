@@ -117,23 +117,28 @@ public class Main extends JFrame implements ActionListener{
 			File file1 = fc1.getSelectedFile();
 			outname = file1.getAbsolutePath();
 		}
-		TestFileRead.input(getPath());
-		TestFileRead.dataArrange();
+		FileRead.input(getPath());
+		FileRead.dataArrange();
 
-		int[] ei = TestFileRead.getEdge();
-		int[] st = TestFileRead.getStart();
-		int[] ed = TestFileRead.getEnd();
-		int[] vt = TestFileRead.getVertex();
-		String[] ty = TestFileRead.getType();
-		int[] lf = TestFileRead.getLife();
-		int a = TestFileRead.getAdd();
-		int s = TestFileRead.getSub();
-		int m = TestFileRead.getMult();
-		int c = TestFileRead.getComp();
+		int[] ei = FileRead.getEdge();
+		int[] v1 = FileRead.getVer1();
+		int[] v2 = FileRead.getVer2();
+		int[] vt = FileRead.getVertex();
+		String[] ty = FileRead.getType();
+		int[] lf = FileRead.getLife();
+		int a = FileRead.getAdd();
+		int s = FileRead.getSub();
+		int m = FileRead.getMult();
+		int d = FileRead.getDiv();
 
-		OperationLEA.Basic(a, s, m, c, vt, ty, lf);
-		RegisterLEA.Basic(ei, st, ed);
-		TestFileWrite.output(outname);
-		TestFileRead.resetRC();
+		LifetimeAnalysis.Basic(ei, v1, v2, ei, ty, lf);
+		int[] st = LifetimeAnalysis.getStart();
+		int[] ed = LifetimeAnalysis.getEnd();
+		int[] ch = LifetimeAnalysis.getKab();
+
+		OperationLEA.Basic(a, s, m, d, vt, ty, lf);
+		RegisterLEA.Basic(ei, st, ed, ch);
+		FileWrite.output(outname);
+		FileRead.resetRC();
 	}
 }

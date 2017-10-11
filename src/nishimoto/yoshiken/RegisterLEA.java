@@ -18,7 +18,7 @@ public class RegisterLEA {
 		lines = k;
 	}
 
-	public static void Basic(int[] edgeId, int[] start, int[] end){
+	public static void Basic(int[] edgeId, int[] start, int[] end, int[] chou){
 		int t = 0;
 		regs = null;
 		regs = new int[edgeId.length][edgeId.length];
@@ -47,10 +47,22 @@ public class RegisterLEA {
 					}
 				}
 
-				watermark = end[y];
-				regs[t][h] = y;
+				boolean ki = false;
 
-				h = h + 1;
+				for(int r = 0; r < chou.length; r++){
+					if(chou[r] == y){
+						ki = true;
+					}
+				}
+
+				if(!ki){
+					watermark = end[y];
+					regs[t][h] = y;
+
+					System.out.print("regs["+ t +"][" + h + "]=" + regs[t][h] +" ");
+
+					h = h + 1;
+				}
 
 				edgeId[y] = -1;
 				start[y] = -1;
@@ -61,7 +73,9 @@ public class RegisterLEA {
 
 			for(int p = h; p < edgeId.length; p++){
 				regs[t][p] = -1;
+				System.out.print("regs["+ t +"][" + p + "]=" + regs[t][h] +" ");
 			}
+			System.out.print("\n");
 
 			t = t + 1;
 

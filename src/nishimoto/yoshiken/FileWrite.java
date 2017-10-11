@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class TestFileWrite {
+public class FileWrite {
 	public static void output(String path){
 		File file = new File(path);
 		try {
@@ -19,14 +19,14 @@ public class TestFileWrite {
 			int[][] addop = OperationLEA.getAddops();
 			int[][] subop = OperationLEA.getAddops();
 			int[][] multop = OperationLEA.getMultops();
-			int[][] compop = OperationLEA.getCompops();
+			int[][] divop = OperationLEA.getDivops();
 
 			//レジスタ＆演算器の数出力
 			pw.println("Register." + String.format("%1$5d", RegisterLEA.getLines()));
-			pw.println("add." + String.format("%1$10d", TestFileRead.getAdd()));
-			pw.println("sub." + String.format("%1$10d", TestFileRead.getSub()));
-			pw.println("mult." + String.format("%1$9d", TestFileRead.getMult()));
-			pw.println("comp." + String.format("%1$9d", TestFileRead.getComp()));
+			pw.println("add." + String.format("%1$10d", FileRead.getAdd()));
+			pw.println("sub." + String.format("%1$10d", FileRead.getSub()));
+			pw.println("mult." + String.format("%1$9d", FileRead.getMult()));
+			pw.println("comp." + String.format("%1$9d", FileRead.getDiv()));
 
 			//レジスタ割当結果出力
 			for(int i = 0; i < reg.length; i++){
@@ -45,7 +45,7 @@ public class TestFileWrite {
 			pw.println("Calculator");
 
 			//加算器割当出力
-			if(TestFileRead.getAdd() != 0){
+			if(FileRead.getAdd() != 0){
 				for(int i = 0; i < addop.length; i++){
 					int num = i + 1;
 					pw.print("Add" + num);
@@ -59,7 +59,7 @@ public class TestFileWrite {
 			}
 
 			//減算器割当出力
-			if(TestFileRead.getSub() != 0){
+			if(FileRead.getSub() != 0){
 				for(int i = 0; i < subop.length; i++){
 					int num = i + 1;
 					pw.print("Sub" + num);
@@ -73,7 +73,7 @@ public class TestFileWrite {
 			}
 
 			//乗算器割当出力
-			if(TestFileRead.getMult() != 0){
+			if(FileRead.getMult() != 0){
 				for(int i = 0; i < multop.length; i++){
 					int num = i + 1;
 					pw.print("Mul" + num);
@@ -87,13 +87,13 @@ public class TestFileWrite {
 			}
 
 			//除算器割当出力
-			if(TestFileRead.getComp() != 0){
-				for(int i = 0; i < compop.length; i++){
+			if(FileRead.getDiv() != 0){
+				for(int i = 0; i < divop.length; i++){
 					int num = i + 1;
 					pw.print("Com" + num);
-					for(int j = 0; j < compop[i].length; j++){
-						if(compop[i][j] != -1){
-							pw.print(" " + compop[i][j]);
+					for(int j = 0; j < divop[i].length; j++){
+						if(divop[i][j] != -1){
+							pw.print(" " + divop[i][j]);
 						}
 					}
 					pw.print("\n");
