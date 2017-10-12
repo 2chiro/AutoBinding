@@ -6,6 +6,7 @@ public class LifetimeAnalysis {
 	private static int[] start;
 	private static int[] end;
 	private static int[] kab;
+	private static int maxtime;
 
 	public static int[] getStart(){
 		return start;
@@ -19,6 +20,10 @@ public class LifetimeAnalysis {
 		return kab;
 	}
 
+	public static int getMaxtime(){
+		return maxtime;
+	}
+
 	public static void Basic(int[] edgeId, int[] ver1, int[] ver2, int[] vertexId, String[] type, int[] lifetime){
 		start = new int[edgeId.length]; end = new int[edgeId.length];
 		ArrayList<Integer> kaburi = new ArrayList<Integer>();
@@ -28,6 +33,18 @@ public class LifetimeAnalysis {
 				if(ver1[i] == ver1[k]){
 					if(lifetime[ver2[i]] >= lifetime[ver2[k]]){
 						kaburi.add(edgeId[k]);
+					}
+					else{
+						boolean pe = false;
+						for(int l : kaburi){
+							if(l == edgeId[i]){
+								pe = true;
+								break;
+							}
+						}
+						if(!pe){
+							kaburi.add(edgeId[i]);
+						}
 					}
 				}
 			}
@@ -59,5 +76,6 @@ public class LifetimeAnalysis {
 			kab[ka] = kav;
 			ka = ka + 1;
 		}
+		maxtime = x;
 	}
 }

@@ -135,9 +135,10 @@ public class Main extends JFrame implements ActionListener{
 		int[] st = LifetimeAnalysis.getStart();
 		int[] ed = LifetimeAnalysis.getEnd();
 		int[] ch = LifetimeAnalysis.getKab();
+		int mt = LifetimeAnalysis.getMaxtime();
 
 		OperationLEA.Basic(a, s, m, d, vt, ty, lf);
-		RegisterLEA.Basic(ei, st, ed, ch);
+		RegisterLEA.Basic(ei, st, ed, ch, mt);
 		FileWrite.output(outname);
 		FileRead.resetRC();
 	}

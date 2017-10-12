@@ -18,10 +18,10 @@ public class RegisterLEA {
 		lines = k;
 	}
 
-	public static void Basic(int[] edgeId, int[] start, int[] end, int[] chou){
+	public static void Basic(int[] edgeId, int[] start, int[] end, int[] chou, int maxtime){
 		int t = 0;
 		regs = null;
-		regs = new int[edgeId.length][edgeId.length];
+		regs = new int[edgeId.length][maxtime];
 		boolean check = false;
 		while(!check){
 			int h = 0;
@@ -52,6 +52,7 @@ public class RegisterLEA {
 				for(int r = 0; r < chou.length; r++){
 					if(chou[r] == y){
 						ki = true;
+						break;
 					}
 				}
 
@@ -71,7 +72,7 @@ public class RegisterLEA {
 				xs.clear();
 			}
 
-			for(int p = h; p < edgeId.length; p++){
+			for(int p = h; p < maxtime; p++){
 				regs[t][p] = -1;
 				System.out.print("regs["+ t +"][" + p + "]=" + regs[t][h] +" ");
 			}

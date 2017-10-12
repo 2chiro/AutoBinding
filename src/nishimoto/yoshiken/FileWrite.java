@@ -26,7 +26,7 @@ public class FileWrite {
 			pw.println("add." + String.format("%1$10d", FileRead.getAdd()));
 			pw.println("sub." + String.format("%1$10d", FileRead.getSub()));
 			pw.println("mult." + String.format("%1$9d", FileRead.getMult()));
-			pw.println("comp." + String.format("%1$9d", FileRead.getDiv()));
+			pw.println("div." + String.format("%1$10d", FileRead.getDiv()));
 
 			//レジスタ割当結果出力
 			for(int i = 0; i < reg.length; i++){
@@ -90,7 +90,7 @@ public class FileWrite {
 			if(FileRead.getDiv() != 0){
 				for(int i = 0; i < divop.length; i++){
 					int num = i + 1;
-					pw.print("Com" + num);
+					pw.print("Div" + num);
 					for(int j = 0; j < divop[i].length; j++){
 						if(divop[i][j] != -1){
 							pw.print(" " + divop[i][j]);
