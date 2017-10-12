@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main extends JFrame implements ActionListener{
 
@@ -90,6 +92,11 @@ public class Main extends JFrame implements ActionListener{
 		String path_a = null;
 		if(cmd.equals("SelectFile")){
 			JFileChooser fc = new JFileChooser();
+			FileFilter filter1 = new FileNameExtensionFilter("スケジューリング済みのDFG(*.dfg)", "dfg");
+			FileFilter filter2 = new FileNameExtensionFilter("DATファイル(*.dat)", "dat");
+			fc.addChoosableFileFilter(filter1);
+			fc.addChoosableFileFilter(filter2);
+			fc.setAcceptAllFileFilterUsed(false);
 			int selected = fc.showOpenDialog(this);
 			if(selected == JFileChooser.APPROVE_OPTION){
 				File file = fc.getSelectedFile();
@@ -112,6 +119,9 @@ public class Main extends JFrame implements ActionListener{
 	public void goBinding(){
 		String outname = null;
 		JFileChooser fc1 = new JFileChooser();
+		FileFilter filter3 = new FileNameExtensionFilter("DATファイル(*.dat)", "dat");
+		fc1.addChoosableFileFilter(filter3);
+		fc1.setAcceptAllFileFilterUsed(false);
 		int selected1 = fc1.showSaveDialog(this);
 		if(selected1 == JFileChooser.APPROVE_OPTION){
 			File file1 = fc1.getSelectedFile();

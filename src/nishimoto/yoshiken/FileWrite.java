@@ -32,10 +32,10 @@ public class FileWrite {
 			for(int i = 0; i < reg.length; i++){
 				if(i < RegisterLEA.getLines()){
 					int num = i + 1;
-					pw.print(num);
+					pw.print(String.format("%-2d",num));
 					for(int j = 0; j < reg[i].length; j++){
 						if(reg[i][j] != -1){
-							pw.print("   " + reg[i][j]);
+							pw.print(String.format("%1$5d", reg[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -51,7 +51,7 @@ public class FileWrite {
 					pw.print("Add" + num);
 					for(int j = 0; j < addop[i].length; j++){
 						if(addop[i][j] != -1){
-							pw.print("   " + addop[i][j]);
+							pw.print(String.format("%1$5d", addop[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -65,7 +65,7 @@ public class FileWrite {
 					pw.print("Sub" + num);
 					for(int j = 0; j < subop[i].length; j++){
 						if(subop[i][j] != -1){
-							pw.print("   " + subop[i][j]);
+							pw.print(String.format("%1$5d", subop[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -79,7 +79,7 @@ public class FileWrite {
 					pw.print("Mul" + num);
 					for(int j = 0; j < multop[i].length; j++){
 						if(multop[i][j] != -1){
-							pw.print("   " + multop[i][j]);
+							pw.print(String.format("%1$5d", multop[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -93,7 +93,7 @@ public class FileWrite {
 					pw.print("Div" + num);
 					for(int j = 0; j < divop[i].length; j++){
 						if(divop[i][j] != -1){
-							pw.print(" " + divop[i][j]);
+							pw.print(String.format("%1$5d", divop[i][j]));
 						}
 					}
 					pw.print("\n");

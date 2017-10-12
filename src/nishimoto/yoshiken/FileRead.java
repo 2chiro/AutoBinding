@@ -170,11 +170,20 @@ public class FileRead {
 					if(imarse[0].equals("adder=")){
 						add = Integer.parseInt(imarse[1]);
 					}
-					else if(imarse[0].equals("subtractor=")){
-						sub = Integer.parseInt(imarse[1]);
-					}
 					else if(imarse[0].equals("multiplier=")){
 						mult = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("add=")){
+						add = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("sub=")){
+						sub = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("multi=")){
+						mult = Integer.parseInt(imarse[1]);
+					}
+					else if(imarse[0].equals("div=")){
+						div = Integer.parseInt(imarse[1]);
 					}
 				}
 				ha = true;
