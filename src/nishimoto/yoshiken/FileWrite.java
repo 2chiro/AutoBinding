@@ -22,11 +22,11 @@ public class FileWrite {
 			int[][] divop = OperationLEA.getDivops();
 
 			//レジスタ＆演算器の数出力
-			pw.println("Register." + String.format("%1$5d", RegisterLEA.getLines()));
-			pw.println("add." + String.format("%1$10d", FileRead.getAdd()));
-			pw.println("sub." + String.format("%1$10d", FileRead.getSub()));
-			pw.println("mult." + String.format("%1$9d", FileRead.getMult()));
-			pw.println("div." + String.format("%1$10d", FileRead.getDiv()));
+			pw.println("Register. " + String.format("%1$4d", RegisterLEA.getLines()));
+			pw.println("add. " + String.format("%1$9d", FileRead.getAdd()));
+			pw.println("sub. " + String.format("%1$9d", FileRead.getSub()));
+			pw.println("mult. " + String.format("%1$8d", FileRead.getMult()));
+			pw.println("div. " + String.format("%1$9d", FileRead.getDiv()));
 
 			//レジスタ割当結果出力
 			for(int i = 0; i < reg.length; i++){
@@ -35,7 +35,7 @@ public class FileWrite {
 					pw.print(String.format("%-2d",num));
 					for(int j = 0; j < reg[i].length; j++){
 						if(reg[i][j] != -1){
-							pw.print(String.format("%1$5d", reg[i][j]));
+							pw.print(" " + String.format("%1$4d", reg[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -51,7 +51,7 @@ public class FileWrite {
 					pw.print("Add" + num);
 					for(int j = 0; j < addop[i].length; j++){
 						if(addop[i][j] != -1){
-							pw.print(String.format("%1$5d", addop[i][j]));
+							pw.print(" " + String.format("%1$4d", addop[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -65,7 +65,7 @@ public class FileWrite {
 					pw.print("Sub" + num);
 					for(int j = 0; j < subop[i].length; j++){
 						if(subop[i][j] != -1){
-							pw.print(String.format("%1$5d", subop[i][j]));
+							pw.print(" " + String.format("%1$4d", subop[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -79,7 +79,7 @@ public class FileWrite {
 					pw.print("Mul" + num);
 					for(int j = 0; j < multop[i].length; j++){
 						if(multop[i][j] != -1){
-							pw.print(String.format("%1$5d", multop[i][j]));
+							pw.print(" " + String.format("%1$4d", multop[i][j]));
 						}
 					}
 					pw.print("\n");
@@ -93,7 +93,7 @@ public class FileWrite {
 					pw.print("Div" + num);
 					for(int j = 0; j < divop[i].length; j++){
 						if(divop[i][j] != -1){
-							pw.print(String.format("%1$5d", divop[i][j]));
+							pw.print(" " + String.format("%1$4d", divop[i][j]));
 						}
 					}
 					pw.print("\n");

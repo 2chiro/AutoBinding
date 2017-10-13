@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +26,8 @@ public class Main extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private JTextField textField;
 	private String path;
+	private JRadioButton[] radio;
+	private int mode;
 
 	public String getPath(){
 		return path;
@@ -85,6 +89,20 @@ public class Main extends JFrame implements ActionListener{
 		SelectFile.addActionListener(this);
 		SelectFile.setActionCommand("SelectFile");
 		panel_1.add(SelectFile);
+
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.CENTER);
+
+		radio = new JRadioButton[2];
+		radio[0] = new JRadioButton("LEAバインディング", true);
+		radio[1] = new JRadioButton("CO判定");
+
+		ButtonGroup group = new ButtonGroup();
+		group.add(radio[0]);
+		group.add(radio[1]);
+
+		panel_2.add(radio[0]);
+		panel_2.add(radio[1]);
 	}
 
 	public void actionPerformed(ActionEvent e){
@@ -111,6 +129,12 @@ public class Main extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(this, label1);
 			}
 			else{
+				if(radio[0].isSelected()){
+					mode = 0;
+				}
+				else if(radio[1].isSelected()){
+					mode = 1;
+				}
 				goBinding();
 			}
 		}
@@ -126,6 +150,9 @@ public class Main extends JFrame implements ActionListener{
 		if(selected1 == JFileChooser.APPROVE_OPTION){
 			File file1 = fc1.getSelectedFile();
 			outname = file1.getAbsolutePath();
+			if(!outname.toString().substring(outname.toString().length() -4).equals(".dat")){
+				outname = outname + ".dat";
+			}
 		}
 		FileRead.input(getPath());
 		FileRead.dataArrange();
@@ -147,9 +174,14 @@ public class Main extends JFrame implements ActionListener{
 		int[] ch = LifetimeAnalysis.getKab();
 		int mt = LifetimeAnalysis.getMaxtime();
 
-		OperationLEA.Basic(a, s, m, d, vt, ty, lf);
-		RegisterLEA.Basic(ei, st, ed, ch, mt);
-		FileWrite.output(outname);
-		FileRead.resetRC();
+		if(mode == 0){
+			OperationLEA.Basic(a, s, m, d, vt, ty, lf);
+			RegisterLEA.Basic(ei, st, ed, ch, mt);
+			FileWrite.output(outname);
+			FileRead.resetRC();
+		}
+		else if(mode == 1){
+			FindCOs.Basic(v1, v2, ty);
+		}
 	}
 }
