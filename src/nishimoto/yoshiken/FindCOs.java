@@ -1,6 +1,7 @@
 package nishimoto.yoshiken;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FindCOs {
 	private static ArrayList<Integer> co = new ArrayList<Integer>();
@@ -87,6 +88,8 @@ public class FindCOs {
 			}
 
 		}
+		Collections.sort(co);
+
 		//デバッグ
 		int k = 1;
 		for(int c : co){

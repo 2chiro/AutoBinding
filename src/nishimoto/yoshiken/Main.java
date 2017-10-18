@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -95,7 +96,7 @@ public class Main extends JFrame implements ActionListener{
 
 		radio = new JRadioButton[2];
 		radio[0] = new JRadioButton("LEAバインディング", true);
-		radio[1] = new JRadioButton("CO判定");
+		radio[1] = new JRadioButton("TOP生成");
 
 		ButtonGroup group = new ButtonGroup();
 		group.add(radio[0]);
@@ -182,6 +183,8 @@ public class Main extends JFrame implements ActionListener{
 		}
 		else if(mode == 1){
 			FindCOs.Basic(v1, v2, ty);
+			ArrayList<Integer> co = FindCOs.getCOs();
+			ConstructTOPs.Basic(co, ty, lf, a, s, m, d, mt);
 		}
 	}
 }
