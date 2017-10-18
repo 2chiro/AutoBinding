@@ -32,6 +32,7 @@ public class ConstructTOPs {
 		//加算器TOP・VTOP生成
 		for(int i = 0; i < add; i++){
 			boolean ft = false;
+			//phase 1
 			for(int j = 0; j < co.size(); j++){
 				if(type[co.get(j)].equals("A") && !toplist.contains(co.get(j))){
 					for(int k = 0; k < co.size(); k++){
@@ -58,7 +59,17 @@ public class ConstructTOPs {
 							addtop[i][0] = co.get(j);
 							addtop[i][1] = -1;
 							toplist.add(co.get(j));
+							ft = true;
+							break;
 						}
+					}
+				}
+			}
+			//phase 2
+			if(!ft){
+				for(int j = 0; j < co.size(); j++){
+					if(type[co.get(j)].equals("A") && !toplist.contains(co.get(j))){
+						
 					}
 				}
 			}
