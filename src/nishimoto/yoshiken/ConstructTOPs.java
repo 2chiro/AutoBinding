@@ -8,6 +8,7 @@ public class ConstructTOPs {
 	private static int[][] multop;
 	private static int[][] divtop;
 	private static ArrayList<Integer> toplist;
+	private static ArrayList<Integer> topedge;
 
 	public static int[][] getAddTOP(){
 		return addtop;
@@ -21,6 +22,9 @@ public class ConstructTOPs {
 	public static int[][] getDivTOP(){
 		return divtop;
 	}
+	public static ArrayList<Integer> getTOPEdge(){
+		return topedge;
+	}
 
 	public static void Basic(ArrayList<Integer> co, String[] type, int[] lifetime, int add, int sub, int mult, int div, int max){
 		addtop = new int[add][2];
@@ -28,6 +32,7 @@ public class ConstructTOPs {
 		multop = new int[mult][2];
 		divtop = new int[div][2];
 		toplist = new ArrayList<Integer>();
+		topedge = new ArrayList<Integer>();
 
 		//加算器TOP・VTOP生成
 		for(int i = 0; i < add; i++){
@@ -42,6 +47,7 @@ public class ConstructTOPs {
 								addtop[i][1] = co.get(k);
 								toplist.add(co.get(j));
 								toplist.add(co.get(k));
+								topedge.add(co.get(k));
 								ft = true;
 								break;
 							}
@@ -59,6 +65,7 @@ public class ConstructTOPs {
 							addtop[i][0] = co.get(j);
 							addtop[i][1] = -1;
 							toplist.add(co.get(j));
+							topedge.add(co.get(j));
 							ft = true;
 							break;
 						}
@@ -69,7 +76,7 @@ public class ConstructTOPs {
 			if(!ft){
 				for(int j = 0; j < co.size(); j++){
 					if(type[co.get(j)].equals("A") && !toplist.contains(co.get(j))){
-						
+
 					}
 				}
 			}
@@ -87,6 +94,7 @@ public class ConstructTOPs {
 								multop[i][1] = co.get(k);
 								toplist.add(co.get(j));
 								toplist.add(co.get(k));
+								topedge.add(co.get(k));
 								ft = true;
 								break;
 							}
@@ -104,6 +112,7 @@ public class ConstructTOPs {
 							multop[i][0] = co.get(j);
 							multop[i][1] = -1;
 							toplist.add(co.get(j));
+							topedge.add(co.get(j));
 						}
 					}
 				}

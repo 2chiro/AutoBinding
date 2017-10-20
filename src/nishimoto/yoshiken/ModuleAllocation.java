@@ -1,9 +1,10 @@
 package nishimoto.yoshiken;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OperationLEA {
+public class ModuleAllocation {
 	private static int[][] addops;
 	private static int[][] subops;
 	private static int[][] multops;
@@ -155,6 +156,79 @@ public class OperationLEA {
 				}
 				for(int c = m; c < divops.length; c++){
 					divops[c][j-1] = -1;
+				}
+			}
+		}
+	}
+
+	public static void Wang(int[][] addtop, int[][] subtop, int[][] multop, int[][] divtop,
+			int add, int sub, int mult, int div, int[] vertexId, String[] type, int[] lifetime){
+		Map<Integer, Integer> addmap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> submap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> multmap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> divmap = new HashMap<Integer, Integer>();
+		int endtime = 0;
+		for(int i = 0; i < vertexId.length; i++){
+			if("A".equals(type[i])){
+				addmap.put(vertexId[i], lifetime[i]);
+			}
+			else if("S".equals(type[i])){
+				submap.put(vertexId[i], lifetime[i]);
+			}
+			else if("M".equals(type[i])){
+				multmap.put(vertexId[i], lifetime[i]);
+			}
+			else if("D".equals(type[i])){
+				divmap.put(vertexId[i], lifetime[i]);
+			}
+			if(endtime < lifetime[i]){
+				endtime = lifetime[i];
+			}
+		}
+
+		int[] addlist = new int[addmap.size()]; int[] addtime = new int[addmap.size()];
+		int[] sublist = new int[submap.size()]; int[] subtime = new int[submap.size()];
+		int[] multlist = new int[multmap.size()]; int[]multtime = new int[multmap.size()];
+		int[] divlist = new int[divmap.size()]; int[] divtime = new int[divmap.size()];
+
+		ArrayList<Integer> addaltop = new ArrayList<Integer>();
+
+		//加算割当
+		if(add != 0){
+			addops = new int[add][endtime];
+			for(int i = 0; i < addops.length; i++){
+				for(int j = 0; j < addops[i].length; j++){
+					addops[i][j] = -1;
+				}
+			}
+			for(int i = 0; i < addtop.length; i++){
+				for(int j = 0; j < addtop[i].length; j++){
+					addops[i][lifetime[addtop[i][j]]] = addtop[i][j];
+					addaltop.add(addtop[i][j]);
+				}
+			}
+
+			int k = 0;
+			for(int key : addmap.keySet()){
+				if(!addaltop.contains(key)){
+					addlist[k] = key;
+					addtime[k] = addmap.get(key);
+					k = k + 1;
+				}
+			}
+			for(int j = 1; j <= endtime; j++){
+				int m = 0;
+				for(int n = 0; n < addlist.length; n++){
+					if(addops[m][j-1] == -1){
+						if(addtime[n] == j){
+							addops[m][j-1] = addlist[n];
+							addlist[n] = -1; addtime[n] = -1;
+							m = m + 1;
+						}
+						if(add < m + 1){
+							//エラー処理
+						}
+					}
 				}
 			}
 		}

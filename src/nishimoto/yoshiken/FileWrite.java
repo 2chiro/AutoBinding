@@ -15,14 +15,14 @@ public class FileWrite {
 			BufferedWriter bw = new BufferedWriter(filewriter);
 			PrintWriter pw = new PrintWriter(bw);
 
-			int[][] reg = RegisterLEA.getRegs();
-			int[][] addop = OperationLEA.getAddops();
-			int[][] subop = OperationLEA.getAddops();
-			int[][] multop = OperationLEA.getMultops();
-			int[][] divop = OperationLEA.getDivops();
+			int[][] reg = RegisterAllocation.getRegs();
+			int[][] addop = ModuleAllocation.getAddops();
+			int[][] subop = ModuleAllocation.getAddops();
+			int[][] multop = ModuleAllocation.getMultops();
+			int[][] divop = ModuleAllocation.getDivops();
 
 			//レジスタ＆演算器の数出力
-			pw.println("Register. " + String.format("%1$4d", RegisterLEA.getLines()));
+			pw.println("Register. " + String.format("%1$4d", RegisterAllocation.getLines()));
 			pw.println("add. " + String.format("%1$9d", FileRead.getAdd()));
 			pw.println("sub. " + String.format("%1$9d", FileRead.getSub()));
 			pw.println("mult. " + String.format("%1$8d", FileRead.getMult()));
@@ -30,7 +30,7 @@ public class FileWrite {
 
 			//レジスタ割当結果出力
 			for(int i = 0; i < reg.length; i++){
-				if(i < RegisterLEA.getLines()){
+				if(i < RegisterAllocation.getLines()){
 					int num = i + 1;
 					pw.print(String.format("%-2d",num));
 					for(int j = 0; j < reg[i].length; j++){

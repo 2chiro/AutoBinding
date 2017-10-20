@@ -2,7 +2,7 @@ package nishimoto.yoshiken;
 
 import java.util.ArrayList;
 
-public class RegisterLEA {
+public class RegisterAllocation {
 	private static int[][] regs;
 	private static int lines;
 
@@ -89,5 +89,14 @@ public class RegisterLEA {
 				check = true;
 			}
 		}
+	}
+
+	public static void Wang(ArrayList<Integer> top, int[] edgeId, int[] ver1,int[] start, int[] end, int[] chou, int maxtime){
+		for(int i = 0; i < edgeId.length; i++){
+			if(top.contains(ver1[i])){
+				end[i] = maxtime;
+			}
+		}
+		Basic(edgeId, start, end, chou, maxtime);
 	}
 }

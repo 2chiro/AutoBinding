@@ -176,8 +176,8 @@ public class Main extends JFrame implements ActionListener{
 		int mt = LifetimeAnalysis.getMaxtime();
 
 		if(mode == 0){
-			OperationLEA.Basic(a, s, m, d, vt, ty, lf);
-			RegisterLEA.Basic(ei, st, ed, ch, mt);
+			ModuleAllocation.Basic(a, s, m, d, vt, ty, lf);
+			RegisterAllocation.Basic(ei, st, ed, ch, mt);
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
