@@ -186,12 +186,15 @@ public class ModuleAllocation {
 			}
 		}
 
-		int[] addlist = new int[addmap.size()]; int[] addtime = new int[addmap.size()];
-		int[] sublist = new int[submap.size()]; int[] subtime = new int[submap.size()];
-		int[] multlist = new int[multmap.size()]; int[]multtime = new int[multmap.size()];
-		int[] divlist = new int[divmap.size()]; int[] divtime = new int[divmap.size()];
+		int[] addlist; int[] addtime;
+		int[] sublist; int[] subtime;
+		int[] multlist; int[] multtime;
+		int[] divlist; int[] divtime;
 
 		ArrayList<Integer> addaltop = new ArrayList<Integer>();
+		ArrayList<Integer> subaltop = new ArrayList<Integer>();
+		ArrayList<Integer> mulaltop = new ArrayList<Integer>();
+		ArrayList<Integer> divaltop = new ArrayList<Integer>();
 
 		//加算割当
 		if(add != 0){
@@ -203,10 +206,14 @@ public class ModuleAllocation {
 			}
 			for(int i = 0; i < addtop.length; i++){
 				for(int j = 0; j < addtop[i].length; j++){
-					addops[i][lifetime[addtop[i][j]]] = addtop[i][j];
-					addaltop.add(addtop[i][j]);
+					if(addtop[i][j] != -1){
+						addops[i][lifetime[addtop[i][j]] - 1] = addtop[i][j];
+						addaltop.add(addtop[i][j]);
+					}
 				}
 			}
+			addlist = new int[addmap.size() - addaltop.size()];
+			addtime = new int[addmap.size() - addaltop.size()];
 
 			int k = 0;
 			for(int key : addmap.keySet()){
@@ -216,17 +223,177 @@ public class ModuleAllocation {
 					k = k + 1;
 				}
 			}
-			for(int j = 1; j <= endtime; j++){
-				int m = 0;
-				for(int n = 0; n < addlist.length; n++){
-					if(addops[m][j-1] == -1){
-						if(addtime[n] == j){
-							addops[m][j-1] = addlist[n];
-							addlist[n] = -1; addtime[n] = -1;
-							m = m + 1;
+
+			for(int n = 0; n < addlist.length; n++){
+				for(int j = 1; j <= endtime; j++){
+					int m = 0;
+					if(addtime[n] == j){
+						boolean d = false;
+						while(!d){
+							if(addops[m][j-1] == -1){
+								addops[m][j-1] = addlist[n];
+								addlist[n] = -1; addtime[n] = -1;
+								d = true;
+							}
+							else{
+								m = m + 1;
+							}
+							if(add < m + 1){
+								//エラー処理
+							}
 						}
-						if(add < m + 1){
-							//エラー処理
+					}
+				}
+			}
+		}
+
+		//減算割当
+		if(sub != 0){
+			subops = new int[sub][endtime];
+			for(int i = 0; i < subops.length; i++){
+				for(int j = 0; j < subops[i].length; j++){
+					subops[i][j] = -1;
+				}
+			}
+			for(int i = 0; i < subtop.length; i++){
+				for(int j = 0; j < subtop[i].length; j++){
+					if(subtop[i][j] != -1){
+						subops[i][lifetime[subtop[i][j]] - 1] = subtop[i][j];
+						subaltop.add(subtop[i][j]);
+					}
+				}
+			}
+			sublist = new int[submap.size() - subaltop.size()];
+			subtime = new int[submap.size() - subaltop.size()];
+
+			int k = 0;
+			for(int key : submap.keySet()){
+				if(!subaltop.contains(key)){
+					sublist[k] = key;
+					subtime[k] = submap.get(key);
+					k = k + 1;
+				}
+			}
+
+			for(int n = 0; n < sublist.length; n++){
+				for(int j = 1; j <= endtime; j++){
+					int m = 0;
+					if(subtime[n] == j){
+						boolean d = false;
+						while(!d){
+							if(subops[m][j-1] == -1){
+								subops[m][j-1] = sublist[n];
+								sublist[n] = -1; subtime[n] = -1;
+								d = true;
+							}
+							else{
+								m = m + 1;
+							}
+							if(sub < m + 1){
+								//エラー処理
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//乗算割当
+		if(mult != 0){
+			multops = new int[mult][endtime];
+			for(int i = 0; i < multops.length; i++){
+				for(int j = 0; j < multops[i].length; j++){
+					multops[i][j] = -1;
+				}
+			}
+			for(int i = 0; i < multop.length; i++){
+				for(int j = 0; j < multop[i].length; j++){
+					if(multop[i][j] != -1){
+						multops[i][lifetime[multop[i][j]] - 1] = multop[i][j];
+						mulaltop.add(multop[i][j]);
+					}
+				}
+			}
+			multlist = new int[multmap.size() - mulaltop.size()];
+			multtime = new int[multmap.size() - mulaltop.size()];
+
+			int k = 0;
+			for(int key : multmap.keySet()){
+				if(!mulaltop.contains(key)){
+					multlist[k] = key;
+					multtime[k] = multmap.get(key);
+					k = k + 1;
+				}
+			}
+
+			for(int n = 0; n < multlist.length; n++){
+				for(int j = 1; j <= endtime; j++){
+					int m = 0;
+					if(multtime[n] == j){
+						boolean d = false;
+						while(!d){
+							if(multops[m][j-1] == -1){
+								multops[m][j-1] = multlist[n];
+								multlist[n] = -1; multtime[n] = -1;
+								d = true;
+							}
+							else{
+								m = m + 1;
+							}
+							if(mult < m + 1){
+								//エラー処理
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//除算割当
+		if(div != 0){
+			divops = new int[div][endtime];
+			for(int i = 0; i < divops.length; i++){
+				for(int j = 0; j < divops[i].length; j++){
+					divops[i][j] = -1;
+				}
+			}
+			for(int i = 0; i < divtop.length; i++){
+				for(int j = 0; j < divtop[i].length; j++){
+					if(divtop[i][j] != -1){
+						divops[i][lifetime[divtop[i][j]] - 1] = divtop[i][j];
+						divaltop.add(divtop[i][j]);
+					}
+				}
+			}
+			divlist = new int[divmap.size() - divaltop.size()];
+			divtime = new int[divmap.size() - divaltop.size()];
+
+			int k = 0;
+			for(int key : divmap.keySet()){
+				if(!divaltop.contains(key)){
+					divlist[k] = key;
+					divtime[k] = divmap.get(key);
+					k = k + 1;
+				}
+			}
+
+			for(int n = 0; n < divlist.length; n++){
+				for(int j = 1; j <= endtime; j++){
+					int m = 0;
+					if(divtime[n] == j){
+						boolean d = false;
+						while(!d){
+							if(divops[m][j-1] == -1){
+								divops[m][j-1] = divlist[n];
+								divlist[n] = -1; divtime[n] = -1;
+								d = true;
+							}
+							else{
+								m = m + 1;
+							}
+							if(div < m + 1){
+								//エラー処理
+							}
 						}
 					}
 				}

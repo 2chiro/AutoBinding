@@ -96,7 +96,7 @@ public class Main extends JFrame implements ActionListener{
 
 		radio = new JRadioButton[2];
 		radio[0] = new JRadioButton("LEAバインディング", true);
-		radio[1] = new JRadioButton("TOP生成");
+		radio[1] = new JRadioButton("Wang式バインディング");
 
 		ButtonGroup group = new ButtonGroup();
 		group.add(radio[0]);
@@ -185,6 +185,15 @@ public class Main extends JFrame implements ActionListener{
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
 			ConstructTOPs.Basic(co, ty, lf, a, s, m, d, mt);
+			int[][] atop = ConstructTOPs.getAddTOP();
+			int[][] stop = ConstructTOPs.getSubTOP();
+			int[][] mtop = ConstructTOPs.getMulTOP();
+			int[][] dtop = ConstructTOPs.getDivTOP();
+			ArrayList<Integer> top = ConstructTOPs.getTOPEdge();
+			ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt, ty, lf);
+			RegisterAllocation.Wang(top, ei, v1, st, ed, ch, mt);
+			FileWrite.output(outname);
+			FileRead.resetRC();
 		}
 	}
 }
