@@ -14,6 +14,7 @@ public class FileRead {
 	private static int[] edge;
 	private static int[] ver1;
 	private static int[] ver2;
+	private static String[] port;
 	private static int add = 0;
 	private static int sub = 0;
 	private static int mult = 0;
@@ -36,6 +37,9 @@ public class FileRead {
 	}
 	public static int[] getVer2(){
 		return ver2;
+	}
+	public static String[] getPort(){
+		return port;
 	}
 	public static int getAdd(){
 		return add;
@@ -133,6 +137,7 @@ public class FileRead {
 		edge = new int[li];
 		ver1 = new int[li];
 		ver2 = new int[li];
+		port = new String[li];
 
 		int ve = 0;
 		int le = 0;
@@ -199,6 +204,7 @@ public class FileRead {
 					edge[le] = Integer.parseInt(imars[0]);
 					ver1[le] = Integer.parseInt(imars[1]);
 					ver2[le] = Integer.parseInt(imars[2]);
+					port[le] = imars[3];
 					le = le + 1;
 				}
 			}

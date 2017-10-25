@@ -184,7 +184,10 @@ public class Main extends JFrame implements ActionListener{
 		else if(mode == 1){
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
-			ConstructTOPs.Basic(co, ty, lf, a, s, m, d, mt);
+			ConstructTOPs.Basic(co, ei, ty, lf, a, s, m, d, mt);
+			if(ConstructTOPs.getNewSDFGListener()){
+
+			}
 			int[][] atop = ConstructTOPs.getAddTOP();
 			int[][] stop = ConstructTOPs.getSubTOP();
 			int[][] mtop = ConstructTOPs.getMulTOP();
