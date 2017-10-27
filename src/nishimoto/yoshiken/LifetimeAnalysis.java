@@ -8,6 +8,7 @@ public class LifetimeAnalysis {
 	private static int[] kab;
 	private static int maxtime;
 
+	private static ArrayList<Integer> addedge;
 	private static ArrayList<Integer> addlifetime;
 	private static ArrayList<String> addtype;
 	private static int[] addstart;
@@ -29,6 +30,9 @@ public class LifetimeAnalysis {
 		return maxtime;
 	}
 
+	public static ArrayList<Integer> getAddEdge(){
+		return addedge;
+	}
 	public static ArrayList<Integer> getAddLifetime(){
 		return addlifetime;
 	}
@@ -96,6 +100,11 @@ public class LifetimeAnalysis {
 		}
 		maxtime = x;
 
+		//wang用
+		addedge = new ArrayList<Integer>();
+		for(int i = 0; i < edgeId.length; i++){
+			addedge.add(edgeId[i]);
+		}
 		addlifetime = new ArrayList<Integer>();
 		addtype = new ArrayList<String>();
 		for(int i = 0; i < lifetime.length; i++){
@@ -107,28 +116,39 @@ public class LifetimeAnalysis {
 
 	public static void Wang(ArrayList<Integer> edgeId, ArrayList<Integer> ver1, ArrayList<Integer> ver2,
 			ArrayList<String> type, ArrayList<Integer> lifetime){
-		int x = addlifetime.size();
+		int x = addedge.size();
 		addlifetime.addAll(lifetime);
 		addtype.addAll(type);
-		addstart = new int[edgeId.size()]; addend = new int[edgeId.size()];
-
+		addedge.addAll(edgeId);
+		addstart = new int[addedge.size()]; addend = new int[addedge.size()];
 		int[] lifetime2 = new int[addlifetime.size()];
 		for(int i = 0; i < x; i++){
-			lifetime2[i] = addlifetime.get(x);
+			lifetime2[i] = addlifetime.get(i);
+			addstart[i] = start[i];
+			addend[i] = end[i];
 		}
-		for(int i = 0; i < edgeId.size(); i++){
-			if(addlifetime.get(ver1.get(i)) == -1){
-				if(addtype.get(ver1.get(i)).equals("I")){
-					lifetime2[ver1.get(i)] = 0;
+		int m = 0;
+		for(int i = addedge.size() - edgeId.size(); i < addedge.size(); i++){
+			if(addlifetime.get(ver1.get(m)) == -1){
+				if(addtype.get(ver1.get(m)).equals("I")){
+					lifetime2[ver1.get(m)] = 0;
 				}
 			}
-			if(addlifetime.get(ver2.get(i)) == -1){
-				if(addtype.get(ver2.get(i)).equals("O")){
-					lifetime2[ver2.get(i)] = maxtime;
+			else{
+				lifetime2[ver1.get(m)] = addlifetime.get(ver1.get(m));
+			}
+			if(addlifetime.get(ver2.get(m)) == -1){
+				if(addtype.get(ver2.get(m)).equals("O")){
+					lifetime2[ver2.get(m)] = maxtime;
 				}
 			}
-			addend[i] = lifetime2[ver2.get(i)];
-			addstart[i] = lifetime2[ver1.get(i)] + 1;
+			else{
+				lifetime2[ver2.get(m)] = addlifetime.get(ver2.get(m));
+			}
+			addend[i] = lifetime2[ver2.get(m)];
+			addstart[i] = lifetime2[ver1.get(m)] + 1;
+			System.out.println("start["+i+"]="+ addstart[i] + " end["+i+"]="+addend[i]);
+			m = m + 1;
 		}
 	}
 }

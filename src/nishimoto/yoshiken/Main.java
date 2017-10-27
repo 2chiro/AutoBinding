@@ -189,8 +189,9 @@ public class Main extends JFrame implements ActionListener{
 			int[] vt1 = null;
 			String[] ty1 = null;
 			int[] lf1 = null;
+			ArrayList<Integer> addver;
+			int[] ver1_2 = null;
 			int[] ei2 = null;
-			int[] v1_2 = null;
 
 			int[] st2 = null;
 			int[] ed2 = null;
@@ -218,14 +219,14 @@ public class Main extends JFrame implements ActionListener{
 				}
 
 				ArrayList<Integer> ver = new ArrayList<Integer>();
-				ArrayList<Integer> addver = ConstructTOPs.getAddVer();
+				addver = ConstructTOPs.getAddVer();
 				ArrayList<String> type = new ArrayList<String>();
 				ArrayList<String> addtype = ConstructTOPs.getAddType();
 				ArrayList<Integer> life = new ArrayList<Integer>();
 				ArrayList<Integer> addlife = ConstructTOPs.getAddLife();
 				ArrayList<Integer> edge = new ArrayList<Integer>();
 				ArrayList<Integer> addedge = ConstructTOPs.getAddEdge();
-				ArrayList<Integer> ver1 = new ArrayList<Integer>();
+				ArrayList<Integer> ver1  = new ArrayList<Integer>();
 				ArrayList<Integer> addver1 = ConstructTOPs.getAddVer1();
 				ArrayList<Integer> addver2 = ConstructTOPs.getAddVer2();
 
@@ -256,12 +257,11 @@ public class Main extends JFrame implements ActionListener{
 				edge.addAll(addedge);
 				ver1.addAll(addver1);
 				ei2 = new int[edge.size()];
-				v1_2 = new int[ver1.size()];
+				ver1_2 = new int[ver1.size()];
 				for(int n = 0; n < ei2.length; n++){
 					ei2[n] = edge.get(n);
-					v1_2[n] = ver1.get(n);
+					ver1_2[n] = ver1.get(n);
 				}
-
 			}
 
 			int[][] atop = ConstructTOPs.getAddTOP();
@@ -275,7 +275,7 @@ public class Main extends JFrame implements ActionListener{
 			}
 			else{
 				ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt1, ty1, lf1);
-				RegisterAllocation.Wang(top, ei2, v1_2, st2, ed2, ch, mt);
+				RegisterAllocation.Wang(top, ei2, ver1_2, st2, ed2, ch, mt);
 			}
 			FileWrite.output(outname);
 			FileRead.resetRC();
