@@ -135,15 +135,16 @@ public class FileWrite {
 			ArrayList<Integer> addedge = ConstructTOPs.getAddEdge();
 			ArrayList<Integer> addver1 = ConstructTOPs.getAddVer1();
 			ArrayList<Integer> addver2 = ConstructTOPs.getAddVer2();
+			ArrayList<String> addport = ConstructTOPs.getAddPort();
 
-			pw.println("#add=>" + add + " sub=>" + sub + " multi=>" + mult + "div=>" + div);
+			pw.println("#add=>" + add + " sub=>" + sub + " multi=>" + mult + " div=>" + div);
 			pw.println("--vertex");
 			pw.println("#vertex_ID\ttype\tlifetime");
 			for(int i = 0; i < ver.length; i++){
 				pw.println(ver[i] + "\t" + type[i] + "\t" + life[i]);
 			}
 			for(int i = 0; i < addver.size(); i++){
-				pw.println(addver.get(i) + "\t" + addtype.get(i) + "\t" + addlife.get(i) + "wangtest");
+				pw.println(addver.get(i) + "\t" + addtype.get(i) + "\t" + addlife.get(i) + "\twangtest");
 			}
 			pw.print("\n");
 
@@ -153,7 +154,7 @@ public class FileWrite {
 				pw.println(edge[i] + "\t" + ver1[i] + "\t" + ver2[i] + "\t" + port[i]);
 			}
 			for(int i = 0; i < addedge.size(); i++){
-				pw.println(addedge.get(i) + "\t" + addver1.get(i) + "\t" + addver2.get(i));
+				pw.println(addedge.get(i) + "\t" + addver1.get(i) + "\t" + addver2.get(i) + "\t" + addport.get(i) + "\twangtest");
 			}
 
 			pw.println("--exclusive block");

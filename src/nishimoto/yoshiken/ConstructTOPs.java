@@ -13,6 +13,7 @@ public class ConstructTOPs {
 	private static ArrayList<Integer> addver;
 	private static ArrayList<String> addtype;
 	private static ArrayList<Integer> addlife;
+	private static ArrayList<String> addport;
 
 	private static ArrayList<Integer> addedge;
 	private static ArrayList<Integer> addver1;
@@ -45,6 +46,9 @@ public class ConstructTOPs {
 	public static ArrayList<Integer> getAddLife(){
 		return addlife;
 	}
+	public static ArrayList<String> getAddPort(){
+		return addport;
+	}
 
 	public static ArrayList<Integer> getAddEdge(){
 		return addedge;
@@ -61,10 +65,6 @@ public class ConstructTOPs {
 	}
 
 	public static void Basic(ArrayList<Integer> co, int[] edgeId, String[] type, int[] lifetime, int add, int sub, int mult, int div, int max){
-		addver = new ArrayList<Integer>();
-		addtype = new ArrayList<String>();
-		addlife = new ArrayList<Integer>();
-
 		int av = lifetime.length;
 		int ve = 0;
 		int ae = edgeId.length;
@@ -176,6 +176,16 @@ public class ConstructTOPs {
 			}
 		}
 
+		addver = new ArrayList<Integer>();
+		addtype = new ArrayList<String>();
+		addlife = new ArrayList<Integer>();
+		addport = new ArrayList<String>();
+
+		addedge = new ArrayList<Integer>();
+		addver1 = new ArrayList<Integer>();
+		addver2 = new ArrayList<Integer>();
+		addport = new ArrayList<String>();
+
 		//phase 2 テスト演算を追加してTOPを生成
 		if(toplist.size() <= co.size()){
 			for(int j = 0; j < co.size(); j++){
@@ -184,7 +194,6 @@ public class ConstructTOPs {
 					if(addrc[lifetime[co.get(j)] - 1] < addrc[lifetime[co.get(j)] - 1] + 1){
 						for(int k = 0; k < 3; k++){
 							addver.add(av);
-							addedge.add(ae);
 							if(k == 2){
 								addtype.add("A");
 								addlife.add(lifetime[co.get(j)]-1);
@@ -194,16 +203,19 @@ public class ConstructTOPs {
 								addver1.add(addver.get(ve - 1));
 								addver2.add(addver.get(ve));
 								addver2.add(addver.get(ve));
+								addport.add("l");
+								addport.add("r");
 								toplist.add(co.get(j));
 								topedge.add(co.get(j));
 							}
 							else{
+								addedge.add(ae);
 								addtype.add("I");
 								addlife.add(-1);
+								ae = ae + 1;
 							}
 							ve = ve + 1;
 							av = av + 1;
-							ae = ae + 1;
 						}
 					}
 					else{
@@ -224,10 +236,10 @@ public class ConstructTOPs {
 							else{
 								addtype.add("I");
 								addlife.add(-1);
+								ae = ae + 1;
 							}
 							ve = ve + 1;
 							av = av + 1;
-							ae = ae + 1;
 						}
 					}
 					newsdfglistener = true;

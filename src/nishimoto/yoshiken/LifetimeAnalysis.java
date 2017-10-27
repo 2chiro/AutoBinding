@@ -8,6 +8,11 @@ public class LifetimeAnalysis {
 	private static int[] kab;
 	private static int maxtime;
 
+	private static ArrayList<Integer> addlifetime;
+	private static ArrayList<String> addtype;
+	private static int[] addstart;
+	private static int[] addend;
+
 	public static int[] getStart(){
 		return start;
 	}
@@ -22,6 +27,19 @@ public class LifetimeAnalysis {
 
 	public static int getMaxtime(){
 		return maxtime;
+	}
+
+	public static ArrayList<Integer> getAddLifetime(){
+		return addlifetime;
+	}
+	public static ArrayList<String> getAddType(){
+		return addtype;
+	}
+	public static int[] getAddStart(){
+		return addstart;
+	}
+	public static int[] getAddEnd(){
+		return addend;
 	}
 
 	public static void Basic(int[] edgeId, int[] ver1, int[] ver2, int[] vertexId, String[] type, int[] lifetime){
@@ -77,5 +95,40 @@ public class LifetimeAnalysis {
 			ka = ka + 1;
 		}
 		maxtime = x;
+
+		addlifetime = new ArrayList<Integer>();
+		addtype = new ArrayList<String>();
+		for(int i = 0; i < lifetime.length; i++){
+			addlifetime.add(lifetime[i]);
+			addtype.add(type[i]);
+		}
+
+	}
+
+	public static void Wang(ArrayList<Integer> edgeId, ArrayList<Integer> ver1, ArrayList<Integer> ver2,
+			ArrayList<String> type, ArrayList<Integer> lifetime){
+		int x = addlifetime.size();
+		addlifetime.addAll(lifetime);
+		addtype.addAll(type);
+		addstart = new int[edgeId.size()]; addend = new int[edgeId.size()];
+
+		int[] lifetime2 = new int[addlifetime.size()];
+		for(int i = 0; i < x; i++){
+			lifetime2[i] = addlifetime.get(x);
+		}
+		for(int i = 0; i < edgeId.size(); i++){
+			if(addlifetime.get(ver1.get(i)) == -1){
+				if(addtype.get(ver1.get(i)).equals("I")){
+					lifetime2[ver1.get(i)] = 0;
+				}
+			}
+			if(addlifetime.get(ver2.get(i)) == -1){
+				if(addtype.get(ver2.get(i)).equals("O")){
+					lifetime2[ver2.get(i)] = maxtime;
+				}
+			}
+			addend[i] = lifetime2[ver2.get(i)];
+			addstart[i] = lifetime2[ver1.get(i)] + 1;
+		}
 	}
 }

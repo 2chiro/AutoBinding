@@ -185,16 +185,98 @@ public class Main extends JFrame implements ActionListener{
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
 			ConstructTOPs.Basic(co, ei, ty, lf, a, s, m, d, mt);
+
+			int[] vt1 = null;
+			String[] ty1 = null;
+			int[] lf1 = null;
+			int[] ei2 = null;
+			int[] v1_2 = null;
+
+			int[] st2 = null;
+			int[] ed2 = null;
+
 			if(ConstructTOPs.getNewSDFGListener()){
+				boolean outsdfg = false;
+				if(!outsdfg){
+					JLabel label2 = new JLabel("新しいSDFGを作成します");
+					JOptionPane.showMessageDialog(this, label2);
+					String outname_sdfg = null;
+					JFileChooser fc2 = new JFileChooser();
+					FileFilter filter4 = new FileNameExtensionFilter("スケジューリング済みのDFG(*.dfg)", "dfg");
+					fc2.addChoosableFileFilter(filter4);
+					fc2.setAcceptAllFileFilterUsed(false);
+					int selected2 = fc2.showSaveDialog(this);
+					if(selected2 == JFileChooser.APPROVE_OPTION){
+						File file2 = fc2.getSelectedFile();
+						outname_sdfg = file2.getAbsolutePath();
+						if(!outname_sdfg.toString().substring(outname_sdfg.toString().length() -4).equals(".dfg")){
+							outname_sdfg = outname_sdfg + ".dfg";
+						}
+						FileWrite.newSDFGOutput(outname_sdfg);
+						outsdfg = true;
+					}
+				}
+
+				ArrayList<Integer> ver = new ArrayList<Integer>();
+				ArrayList<Integer> addver = ConstructTOPs.getAddVer();
+				ArrayList<String> type = new ArrayList<String>();
+				ArrayList<String> addtype = ConstructTOPs.getAddType();
+				ArrayList<Integer> life = new ArrayList<Integer>();
+				ArrayList<Integer> addlife = ConstructTOPs.getAddLife();
+				ArrayList<Integer> edge = new ArrayList<Integer>();
+				ArrayList<Integer> addedge = ConstructTOPs.getAddEdge();
+				ArrayList<Integer> ver1 = new ArrayList<Integer>();
+				ArrayList<Integer> addver1 = ConstructTOPs.getAddVer1();
+				ArrayList<Integer> addver2 = ConstructTOPs.getAddVer2();
+
+				LifetimeAnalysis.Wang(addedge, addver1, addver2, addtype, addlife);
+				st2 = LifetimeAnalysis.getAddStart();
+				ed2 = LifetimeAnalysis.getAddEnd();
+
+				for(int k = 0; k < vt.length; k++){
+					ver.add(vt[k]);
+					type.add(ty[k]);
+					life.add(lf[k]);
+				}
+				ver.addAll(addver);
+				type.addAll(addtype);
+				life.addAll(addlife);
+				vt1 = new int[ver.size()];
+				ty1 = new String[type.size()];
+				lf1 = new int[life.size()];
+				for(int n = 0; n < vt1.length; n++){
+					vt1[n] = ver.get(n);
+					ty1[n] = type.get(n);
+					lf1[n] = life.get(n);
+				}
+				for(int k = 0; k < ei.length; k++){
+					edge.add(ei[k]);
+					ver1.add(v1[k]);
+				}
+				edge.addAll(addedge);
+				ver1.addAll(addver1);
+				ei2 = new int[edge.size()];
+				v1_2 = new int[ver1.size()];
+				for(int n = 0; n < ei2.length; n++){
+					ei2[n] = edge.get(n);
+					v1_2[n] = ver1.get(n);
+				}
 
 			}
+
 			int[][] atop = ConstructTOPs.getAddTOP();
 			int[][] stop = ConstructTOPs.getSubTOP();
 			int[][] mtop = ConstructTOPs.getMulTOP();
 			int[][] dtop = ConstructTOPs.getDivTOP();
 			ArrayList<Integer> top = ConstructTOPs.getTOPEdge();
-			ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt, ty, lf);
-			RegisterAllocation.Wang(top, ei, v1, st, ed, ch, mt);
+			if(!ConstructTOPs.getNewSDFGListener()){
+				ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt, ty, lf);
+				RegisterAllocation.Wang(top, ei, v1, st, ed, ch, mt);
+			}
+			else{
+				ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt1, ty1, lf1);
+				RegisterAllocation.Wang(top, ei2, v1_2, st2, ed2, ch, mt);
+			}
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
