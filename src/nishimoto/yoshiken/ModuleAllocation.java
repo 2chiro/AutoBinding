@@ -205,11 +205,18 @@ public class ModuleAllocation {
 				}
 			}
 			for(int i = 0; i < addtop.length; i++){
+				int life = 0;
 				for(int j = 0; j < addtop[i].length; j++){
 					if(addtop[i][j] != -1){
 						addops[i][lifetime[addtop[i][j]] - 1] = addtop[i][j];
 						addaltop.add(addtop[i][j]);
 					}
+					if(j == 0){
+						life = lifetime[addtop[i][j]] - 1;
+					}
+				}
+				for(int j = 0; j < life; j++){
+					addops[i][j] = -2;
 				}
 			}
 			addlist = new int[addmap.size() - addaltop.size()];
@@ -256,11 +263,18 @@ public class ModuleAllocation {
 				}
 			}
 			for(int i = 0; i < subtop.length; i++){
+				int life = 0;
 				for(int j = 0; j < subtop[i].length; j++){
 					if(subtop[i][j] != -1){
 						subops[i][lifetime[subtop[i][j]] - 1] = subtop[i][j];
 						subaltop.add(subtop[i][j]);
 					}
+					if(j == 0){
+						life = lifetime[subtop[i][j]] - 1;
+					}
+				}
+				for(int j = 0; j < life; j++){
+					subops[i][j] = -2;
 				}
 			}
 			sublist = new int[submap.size() - subaltop.size()];
@@ -307,11 +321,18 @@ public class ModuleAllocation {
 				}
 			}
 			for(int i = 0; i < multop.length; i++){
+				int life = 0;
 				for(int j = 0; j < multop[i].length; j++){
 					if(multop[i][j] != -1){
 						multops[i][lifetime[multop[i][j]] - 1] = multop[i][j];
 						mulaltop.add(multop[i][j]);
 					}
+					if(j == 0){
+						life = lifetime[multop[i][j]] - 1;
+					}
+				}
+				for(int j = 0; j < life; j++){
+					multops[i][j] = -2;
 				}
 			}
 			multlist = new int[multmap.size() - mulaltop.size()];
@@ -358,11 +379,18 @@ public class ModuleAllocation {
 				}
 			}
 			for(int i = 0; i < divtop.length; i++){
+				int life = 0;
 				for(int j = 0; j < divtop[i].length; j++){
 					if(divtop[i][j] != -1){
 						divops[i][lifetime[divtop[i][j]] - 1] = divtop[i][j];
 						divaltop.add(divtop[i][j]);
 					}
+					if(j == 0){
+						life = lifetime[divtop[i][j]] - 1;
+					}
+				}
+				for(int j = 0; j < life; j++){
+					divops[i][j] = -2;
 				}
 			}
 			divlist = new int[divmap.size() - divaltop.size()];

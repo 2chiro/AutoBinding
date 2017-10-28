@@ -51,7 +51,7 @@ public class FileWrite {
 					int num = i + 1;
 					pw.print("Add" + num);
 					for(int j = 0; j < addop[i].length; j++){
-						if(addop[i][j] != -1){
+						if(addop[i][j] != -1 && addop[i][j] != -2){
 							pw.print(" " + String.format("%1$4d", addop[i][j]));
 						}
 					}
@@ -65,7 +65,7 @@ public class FileWrite {
 					int num = i + 1;
 					pw.print("Sub" + num);
 					for(int j = 0; j < subop[i].length; j++){
-						if(subop[i][j] != -1){
+						if(subop[i][j] != -1 && subop[i][j] != -2){
 							pw.print(" " + String.format("%1$4d", subop[i][j]));
 						}
 					}
@@ -79,7 +79,7 @@ public class FileWrite {
 					int num = i + 1;
 					pw.print("Mul" + num);
 					for(int j = 0; j < multop[i].length; j++){
-						if(multop[i][j] != -1){
+						if(multop[i][j] != -1 && multop[i][j] != -2){
 							pw.print(" " + String.format("%1$4d", multop[i][j]));
 						}
 					}
@@ -93,7 +93,7 @@ public class FileWrite {
 					int num = i + 1;
 					pw.print("Div" + num);
 					for(int j = 0; j < divop[i].length; j++){
-						if(divop[i][j] != -1){
+						if(divop[i][j] != -1 && divop[i][j] != -2){
 							pw.print(" " + String.format("%1$4d", divop[i][j]));
 						}
 					}

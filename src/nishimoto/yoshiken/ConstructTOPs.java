@@ -162,6 +162,7 @@ public class ConstructTOPs {
 						addtop[a][1] = -1;
 						toplist.add(co.get(j));
 						topedge.add(co.get(j));
+						a = a + 1;
 					}
 				}
 				//乗算器
@@ -171,6 +172,7 @@ public class ConstructTOPs {
 						multop[m][1] = -1;
 						toplist.add(co.get(j));
 						topedge.add(co.get(j));
+						m = m + 1;
 					}
 				}
 			}
@@ -207,6 +209,7 @@ public class ConstructTOPs {
 								addport.add("r");
 								toplist.add(co.get(j));
 								topedge.add(co.get(j));
+								a = a + 1;
 							}
 							else{
 								addedge.add(ae);
@@ -232,6 +235,64 @@ public class ConstructTOPs {
 								addver2.add(addver.get(ve));
 								toplist.add(co.get(j));
 								topedge.add(addver.get(ve));
+								a = a + 1;
+							}
+							else{
+								addtype.add("I");
+								addlife.add(-1);
+								ae = ae + 1;
+							}
+							ve = ve + 1;
+							av = av + 1;
+						}
+					}
+					newsdfglistener = true;
+				}
+				//乗算器
+				if(type[co.get(j)].equals("M") && !toplist.contains(co.get(j)) && m < mult){
+					if(mulrc[lifetime[co.get(j)] - 1] < mulrc[lifetime[co.get(j)] - 1] + 1){
+						for(int k = 0; k < 3; k++){
+							addver.add(av);
+							if(k == 2){
+								addtype.add("M");
+								addlife.add(lifetime[co.get(j)]-1);
+								multop[m][0] = addver.get(ve);
+								multop[m][1] = co.get(j);
+								addver1.add(addver.get(ve - 2));
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addver2.add(addver.get(ve));
+								addport.add("l");
+								addport.add("r");
+								toplist.add(co.get(j));
+								topedge.add(co.get(j));
+								m = m + 1;
+							}
+							else{
+								addedge.add(ae);
+								addtype.add("I");
+								addlife.add(-1);
+								ae = ae + 1;
+							}
+							ve = ve + 1;
+							av = av + 1;
+						}
+					}
+					else{
+						for(int k = 0; k < 3; k++){
+							addver.add(av);
+							if(k == 2){
+								addtype.add("M");
+								addlife.add(lifetime[co.get(j)]+1);
+								multop[m][0] = co.get(j);
+								multop[m][1] = addver.get(ve);
+								addver1.add(addver.get(ve - 2));
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addver2.add(addver.get(ve));
+								toplist.add(co.get(j));
+								topedge.add(addver.get(ve));
+								m = m + 1;
 							}
 							else{
 								addtype.add("I");
