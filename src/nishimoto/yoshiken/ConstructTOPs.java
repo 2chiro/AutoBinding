@@ -233,11 +233,14 @@ public class ConstructTOPs {
 								addver1.add(addver.get(ve - 1));
 								addver2.add(addver.get(ve));
 								addver2.add(addver.get(ve));
+								addport.add("l");
+								addport.add("r");
 								toplist.add(co.get(j));
 								topedge.add(addver.get(ve));
 								a = a + 1;
 							}
 							else{
+								addedge.add(ae);
 								addtype.add("I");
 								addlife.add(-1);
 								ae = ae + 1;
@@ -290,11 +293,14 @@ public class ConstructTOPs {
 								addver1.add(addver.get(ve - 1));
 								addver2.add(addver.get(ve));
 								addver2.add(addver.get(ve));
+								addport.add("l");
+								addport.add("r");
 								toplist.add(co.get(j));
 								topedge.add(addver.get(ve));
 								m = m + 1;
 							}
 							else{
+								addedge.add(av);
 								addtype.add("I");
 								addlife.add(-1);
 								ae = ae + 1;
@@ -306,6 +312,11 @@ public class ConstructTOPs {
 					newsdfglistener = true;
 				}
 			}
+		}
+		
+		//phase3 exsta VTOPを生成
+		if(toplist.size() <= co.size()){
+			
 		}
 
 		//デバッグ

@@ -58,7 +58,8 @@ public class RegisterAllocation {
 
 				if(!ki){
 					watermark = end[y];
-					regs[t][h] = y;
+					int r = edgeId[y];
+					regs[t][h] = r;
 
 					System.out.print("regs["+ t +"][" + h + "]=" + regs[t][h] +" ");
 
