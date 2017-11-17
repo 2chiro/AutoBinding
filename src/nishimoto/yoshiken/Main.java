@@ -29,6 +29,11 @@ public class Main extends JFrame implements ActionListener{
 	private String path;
 	private JRadioButton[] radio;
 	private int mode;
+	private String firstDirPath = "C:\\AutoBinding";
+
+	private String getDirPath(){
+		return firstDirPath;
+	}
 
 	public String getPath(){
 		return path;
@@ -59,6 +64,11 @@ public class Main extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public Main() {
+		File firdir = new File(getDirPath());
+		if(!firdir.exists()){
+			firdir.mkdir();
+		}
+
 		setTitle("Auto Binding");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -110,7 +120,7 @@ public class Main extends JFrame implements ActionListener{
 		String cmd = e.getActionCommand();
 		String path_a = null;
 		if(cmd.equals("SelectFile")){
-			JFileChooser fc = new JFileChooser();
+			JFileChooser fc = new JFileChooser(getDirPath());
 			FileFilter filter1 = new FileNameExtensionFilter("スケジューリング済みのDFG(*.dfg)", "dfg");
 			FileFilter filter2 = new FileNameExtensionFilter("DATファイル(*.dat)", "dat");
 			fc.addChoosableFileFilter(filter1);
@@ -143,7 +153,7 @@ public class Main extends JFrame implements ActionListener{
 
 	public void goBinding(){
 		String outname = null;
-		JFileChooser fc1 = new JFileChooser();
+		JFileChooser fc1 = new JFileChooser(getDirPath());
 		FileFilter filter3 = new FileNameExtensionFilter("DATファイル(*.dat)", "dat");
 		fc1.addChoosableFileFilter(filter3);
 		fc1.setAcceptAllFileFilterUsed(false);
@@ -201,21 +211,13 @@ public class Main extends JFrame implements ActionListener{
 				if(!outsdfg){
 					JLabel label2 = new JLabel("新しいSDFGを作成します");
 					JOptionPane.showMessageDialog(this, label2);
-					String outname_sdfg = null;
-					JFileChooser fc2 = new JFileChooser();
-					FileFilter filter4 = new FileNameExtensionFilter("スケジューリング済みのDFG(*.dfg)", "dfg");
-					fc2.addChoosableFileFilter(filter4);
-					fc2.setAcceptAllFileFilterUsed(false);
-					int selected2 = fc2.showSaveDialog(this);
-					if(selected2 == JFileChooser.APPROVE_OPTION){
-						File file2 = fc2.getSelectedFile();
-						outname_sdfg = file2.getAbsolutePath();
-						if(!outname_sdfg.toString().substring(outname_sdfg.toString().length() -4).equals(".dfg")){
-							outname_sdfg = outname_sdfg + ".dfg";
-						}
-						FileWrite.newSDFGOutput(outname_sdfg);
-						outsdfg = true;
+					String outname_sdfg = getPath();
+					if(getPath().toString().substring(getPath().toString().length() - 4).equals(".dfg")){
+						outname_sdfg = getPath().replace(".dfg", "");
 					}
+					outname_sdfg = outname_sdfg + "_wang.dfg";
+					FileWrite.newSDFGOutput(outname_sdfg);
+					outsdfg = true;
 				}
 
 				ArrayList<Integer> ver = new ArrayList<Integer>();
