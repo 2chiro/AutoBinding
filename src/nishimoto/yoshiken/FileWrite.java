@@ -141,6 +141,9 @@ public class FileWrite {
 			pw.println("--vertex");
 			pw.println("#vertex_ID\ttype\tlifetime");
 			for(int i = 0; i < ver.length; i++){
+				if(type[i].equals("I") || type[i].equals("O")){
+					life[i] = -1;
+				}
 				pw.println(ver[i] + "\t" + type[i] + "\t" + life[i]);
 			}
 			for(int i = 0; i < addver.size(); i++){
