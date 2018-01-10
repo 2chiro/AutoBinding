@@ -23,7 +23,7 @@ public class FileWrite {
 			int[][] divop = ModuleAllocation.getDivops();
 
 			//レジスタ＆演算器の数出力
-			pw.println("Register. " + String.format("%1$4d", RegisterAllocation.getLines()));
+			pw.println("Register. " + String.format("%1$4d", RegisterAllocation.getLines() - RegisterAllocation.getExreg()));
 			pw.println("add. " + String.format("%1$9d", FileRead.getAdd()));
 			pw.println("sub. " + String.format("%1$9d", FileRead.getSub()));
 			pw.println("mult. " + String.format("%1$8d", FileRead.getMult()));
@@ -31,7 +31,7 @@ public class FileWrite {
 
 			//レジスタ割当結果出力
 			for(int i = 0; i < reg.length; i++){
-				if(i < RegisterAllocation.getLines()){
+				if(i < RegisterAllocation.getLines() - RegisterAllocation.getExreg()){
 					int num = i + 1;
 					pw.print(String.format("%-2d",num));
 					for(int j = 0; j < reg[i].length; j++){

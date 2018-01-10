@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class RegisterAllocation {
 	private static int[][] regs;
 	private static int lines;
+	private static int exreg;
 
 	public static int[][] getRegs(){
 		return regs;
@@ -18,10 +19,15 @@ public class RegisterAllocation {
 		lines = k;
 	}
 
+	public static int getExreg(){
+		return exreg;
+	}
+
 	public static void Basic(int[] edgeId, int[] start, int[] end, int[] chou, int maxtime){
 		int t = 0;
 		regs = null;
 		regs = new int[edgeId.length][maxtime];
+		exreg = 0;
 		boolean check = false;
 		while(!check){
 			int h = 0;
@@ -88,6 +94,18 @@ public class RegisterAllocation {
 				}
 				setLines(t);
 				check = true;
+			}
+		}
+
+		for(int i = 0; i < regs.length; i++){
+			boolean rt = false;
+			for(int j = 0; j < regs[i].length; j++){
+				if(regs[i][j] != -1){
+					rt = true;
+				}
+			}
+			if(!rt){
+				exreg = exreg + 1;
 			}
 		}
 	}
