@@ -102,6 +102,8 @@ public class ConstructTOPs {
 		int s = 0;
 		int d = 0;
 
+		int mode = Main.getMode();
+
 		//phase 1 SDFGからTOPを生成
 		for(int j = 0; j < co.size(); j++){
 			//加算器（＋）
@@ -206,7 +208,7 @@ public class ConstructTOPs {
 			}
 		}
 		//phase1 SDFGからVTOPを生成
-		if(toplist.size() <= co.size() && md > a+m+s+d){
+		if(toplist.size() <= co.size() && md > a+m+s+d && mode == 1){
 			for(int j = 0; j < co.size(); j++){
 				//加算器
 				if(type[co.get(j)].equals("A") && !toplist.contains(co.get(j)) && a < add){
@@ -508,7 +510,7 @@ public class ConstructTOPs {
 		}
 
 		//phase3 exsta VTOPを生成
-		if(md > a+m+s+d){
+		if(md > a+m+s+d  && mode == 1){
 			while(md > a + m + s + d){
 				//加算器
 				if(a < add){
