@@ -69,6 +69,7 @@ public class ConstructTOPs {
 		int ve = 0;
 		int ae = edgeId.length;
 
+		/* これ何のために追加した？
 		int[] addrc = new int[max];
 		int[] subrc = new int[max];
 		int[] mulrc = new int[max];
@@ -88,6 +89,7 @@ public class ConstructTOPs {
 			}
 
 		}
+		*/
 
 		addtop = new int[add][2];
 		subtop = new int[sub][2];
@@ -268,7 +270,7 @@ public class ConstructTOPs {
 			for(int j = 0; j < co.size(); j++){
 				//加算器
 				if(type[co.get(j)].equals("A") && !toplist.contains(co.get(j)) && a < add){
-					if(addrc[lifetime[co.get(j)] - 1] < addrc[lifetime[co.get(j)] - 1] + 1){
+					if(lifetime[co.get(j)] != 1){
 						for(int k = 0; k < 3; k++){
 							addver.add(av);
 							if(k == 2){
@@ -297,7 +299,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("A");
@@ -314,6 +316,15 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								a = a + 1;
 							}
+							else if(k == 3){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(lifetime[co.get(j)]+2);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
+							}
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -328,7 +339,7 @@ public class ConstructTOPs {
 				}
 				//乗算器
 				if(type[co.get(j)].equals("M") && !toplist.contains(co.get(j)) && m < mult){
-					if(mulrc[lifetime[co.get(j)] - 1] < mulrc[lifetime[co.get(j)] - 1] + 1){
+					if(lifetime[co.get(j)] != 1){
 						for(int k = 0; k < 3; k++){
 							addver.add(av);
 							if(k == 2){
@@ -357,7 +368,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("M");
@@ -374,6 +385,15 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								m = m + 1;
 							}
+							else if(k == 3){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(lifetime[co.get(j)]+2);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
+							}
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -388,7 +408,7 @@ public class ConstructTOPs {
 				}
 				//減算器
 				if(type[co.get(j)].equals("S") && !toplist.contains(co.get(j)) && s < sub){
-					if(mulrc[lifetime[co.get(j)] - 1] < mulrc[lifetime[co.get(j)] - 1] + 1){
+					if(lifetime[co.get(j)] != 1){
 						for(int k = 0; k < 3; k++){
 							addver.add(av);
 							if(k == 2){
@@ -417,7 +437,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("S");
@@ -434,6 +454,15 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								s = s + 1;
 							}
+							else if(k == 3){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(lifetime[co.get(j)]+2);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
+							}
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -448,7 +477,7 @@ public class ConstructTOPs {
 				}
 				//除算器
 				if(type[co.get(j)].equals("D") && !toplist.contains(co.get(j)) && d < div){
-					if(mulrc[lifetime[co.get(j)] - 1] < mulrc[lifetime[co.get(j)] - 1] + 1){
+					if(lifetime[co.get(j)] != 1){
 						for(int k = 0; k < 3; k++){
 							addver.add(av);
 							if(k == 2){
@@ -477,7 +506,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("D");
@@ -493,6 +522,15 @@ public class ConstructTOPs {
 								toplist.add(co.get(j));
 								topedge.add(addver.get(ve));
 								d = d + 1;
+							}
+							else if(k == 3){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(lifetime[co.get(j)]+2);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
 							}
 							else{
 								addedge.add(ae);
@@ -622,6 +660,16 @@ public class ConstructTOPs {
 						ve = ve + 1;
 						av = av + 1;
 					}
+					newsdfglistener = true;
+				}
+			}
+		}
+		//phase4 2つのextraテスト演算器の追加
+		if(md > a+m+s+d){
+			while(md > a + m + s + d){
+				//加算器
+				if(a < add){
+
 					newsdfglistener = true;
 				}
 			}
