@@ -196,7 +196,7 @@ public class Main extends JFrame implements ActionListener{
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
-		/**
+		/*
 		else if(mode == 1){
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
@@ -290,9 +290,27 @@ public class Main extends JFrame implements ActionListener{
 		}
 		**/
 		else if(mode == 1){
+			ModuleAllocation.resetInModule();
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
-			ConstructTOPs.Basic(co, vt, ei, ty, lf, a, s, m, d, mt);
+
+			while(true){
+				ConstructTOPs.resetCycleChanger();
+				System.out.println(1);
+				ConstructTOPs.Basic(co, vt, ei, ty, lf, a, s, m, d, mt);
+				System.out.println(2);
+				if(ConstructTOPs.getCycleChanger()){
+					for(int i = 0; i < lf.length; i++){
+						if(lf[i] != -1){
+							lf[i] = lf[i] + 1;
+						}
+					}
+				}
+				else{
+					break;
+				}
+			}
+
 
 			int[] vt1 = null;
 			String[] ty1 = null;
