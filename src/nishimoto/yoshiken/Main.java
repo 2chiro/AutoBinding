@@ -110,17 +110,14 @@ public class Main extends JFrame implements ActionListener{
 
 		radio = new JRadioButton[3];
 		radio[0] = new JRadioButton("LEAバインディング", true);
-		radio[1] = new JRadioButton("Wang式バインディング");
-		radio[2] = new JRadioButton("Wang式バインディング(VTOPなし)");
+		radio[1] = new JRadioButton("Wang式バインディング(VTOPなし)");
 
 		ButtonGroup group = new ButtonGroup();
 		group.add(radio[0]);
 		group.add(radio[1]);
-		group.add(radio[2]);
 
 		panel_2.add(radio[0]);
 		panel_2.add(radio[1]);
-		panel_2.add(radio[2]);
 	}
 
 	public void actionPerformed(ActionEvent e){
@@ -152,9 +149,6 @@ public class Main extends JFrame implements ActionListener{
 				}
 				else if(radio[1].isSelected()){
 					mode = 1;
-				}
-				else if(radio[2].isSelected()){
-					mode = 2;
 				}
 				goBinding();
 			}
@@ -202,10 +196,11 @@ public class Main extends JFrame implements ActionListener{
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
+		/**
 		else if(mode == 1){
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
-			ConstructTOPs.Basic(co, ei, ty, lf, a, s, m, d, mt);
+			ConstructTOPs.Basic(co, vt, ei, ty, lf, a, s, m, d, mt);
 
 			int[] vt1 = null;
 			String[] ty1 = null;
@@ -293,10 +288,11 @@ public class Main extends JFrame implements ActionListener{
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
-		else if(mode == 2){
+		**/
+		else if(mode == 1){
 			FindCOs.Basic(v1, v2, ty);
 			ArrayList<Integer> co = FindCOs.getCOs();
-			ConstructTOPs.Basic(co, ei, ty, lf, a, s, m, d, mt);
+			ConstructTOPs.Basic(co, vt, ei, ty, lf, a, s, m, d, mt);
 
 			int[] vt1 = null;
 			String[] ty1 = null;
@@ -381,8 +377,14 @@ public class Main extends JFrame implements ActionListener{
 				ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt1, ty1, lf1);
 				RegisterAllocation.Wang(top, ei2, ver1_2, st2, ed2, ch, mt);
 			}
-			FileWrite.output(outname);
-			FileRead.resetRC();
+			if(ModuleAllocation.getInModule()){
+				JLabel label3 = new JLabel("エラーが発生しました。演算機が不足しています。リソース制約を見直してください。");
+				JOptionPane.showMessageDialog(this, label3);
+			}
+			else{
+				FileWrite.output(outname);
+				FileRead.resetRC();
+			}
 		}
 		long end = System.currentTimeMillis();
 		System.out.println((end - start)  + "ms");

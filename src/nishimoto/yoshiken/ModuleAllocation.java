@@ -10,6 +10,8 @@ public class ModuleAllocation {
 	private static int[][] multops;
 	private static int[][] divops;
 
+	private static boolean in_module;
+
 	public static int[][] getAddops(){
 		return addops;
 	}
@@ -21,6 +23,13 @@ public class ModuleAllocation {
 	}
 	public static int[][] getDivops(){
 		return divops;
+	}
+
+	public static void resetInModule(){
+		in_module = false;
+	}
+	public static boolean getInModule(){
+		return in_module;
 	}
 
 	public static void Basic(int add, int sub, int mult, int div, int[] vertexId, String[] type, int[] lifetime){
@@ -230,7 +239,6 @@ public class ModuleAllocation {
 					k = k + 1;
 				}
 			}
-
 			for(int n = 0; n < addlist.length; n++){
 				for(int j = 1; j <= endtime; j++){
 					int m = 0;
@@ -246,7 +254,9 @@ public class ModuleAllocation {
 								m = m + 1;
 							}
 							if(add < m + 1){
-								//エラー処理
+								System.out.println("加算器が不足しています。");
+								in_module = true;
+								d = true;
 							}
 						}
 					}
@@ -288,7 +298,6 @@ public class ModuleAllocation {
 					k = k + 1;
 				}
 			}
-
 			for(int n = 0; n < sublist.length; n++){
 				for(int j = 1; j <= endtime; j++){
 					int m = 0;
@@ -304,7 +313,9 @@ public class ModuleAllocation {
 								m = m + 1;
 							}
 							if(sub < m + 1){
-								//エラー処理
+								System.out.println("減算器が不足しています。");
+								in_module = true;
+								d = true;
 							}
 						}
 					}
@@ -346,7 +357,6 @@ public class ModuleAllocation {
 					k = k + 1;
 				}
 			}
-
 			for(int n = 0; n < multlist.length; n++){
 				for(int j = 1; j <= endtime; j++){
 					int m = 0;
@@ -362,7 +372,9 @@ public class ModuleAllocation {
 								m = m + 1;
 							}
 							if(mult < m + 1){
-								//エラー処理
+								System.out.println("乗算器が不足しています。");
+								in_module = true;
+								d = true;
 							}
 						}
 					}
@@ -404,7 +416,6 @@ public class ModuleAllocation {
 					k = k + 1;
 				}
 			}
-
 			for(int n = 0; n < divlist.length; n++){
 				for(int j = 1; j <= endtime; j++){
 					int m = 0;
@@ -420,7 +431,9 @@ public class ModuleAllocation {
 								m = m + 1;
 							}
 							if(div < m + 1){
-								//エラー処理
+								System.out.println("除算器が不足しています。");
+								in_module = true;
+								d = true;
 							}
 						}
 					}
