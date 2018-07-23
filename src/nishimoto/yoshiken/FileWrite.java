@@ -29,6 +29,8 @@ public class FileWrite {
 			pw.println("mult. " + String.format("%1$8d", FileRead.getMult()));
 			pw.println("div. " + String.format("%1$9d", FileRead.getDiv()));
 
+			pw.println("--register binding");
+
 			//レジスタ割当結果出力
 			for(int i = 0; i < reg.length; i++){
 				if(i < RegisterAllocation.getLines() - RegisterAllocation.getExreg()){
@@ -43,7 +45,7 @@ public class FileWrite {
 				}
 			}
 
-			pw.println("Calculator");
+			pw.println("--operation binding");
 
 			//加算器割当出力
 			if(FileRead.getAdd() != 0){
@@ -100,6 +102,8 @@ public class FileWrite {
 					pw.print("\n");
 				}
 			}
+
+			pw.println("--exclusive block");
 
 			pw.close();
 		} catch (IOException e1) {

@@ -19,6 +19,9 @@ public class ConstructTOPs {
 	private static ArrayList<Integer> addver1;
 	private static ArrayList<Integer> addver2;
 
+	private static ArrayList<Integer> dd1;
+	private static ArrayList<Integer> dd2;
+
 	private static boolean newsdfglistener = false;
 
 	public static int[][] getAddTOP(){
@@ -65,6 +68,8 @@ public class ConstructTOPs {
 	}
 
 	public static void Basic(ArrayList<Integer> co, int[] edgeId, String[] type, int[] lifetime, int add, int sub, int mult, int div, int max){
+		dd1 = FindCOs.getDep_Data1();
+		dd2 = FindCOs.getDep_Data2();
 		int av = lifetime.length;
 		int ve = 0;
 		int ae = edgeId.length;
@@ -113,22 +118,48 @@ public class ConstructTOPs {
 				for(int k = 0; k < co.size(); k++){
 					if(type[co.get(k)].equals("A") && !toplist.contains(co.get(k))){
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
-							addtop[a][0] = co.get(j);
-							addtop[a][1] = co.get(k);
-							toplist.add(co.get(j));
-							toplist.add(co.get(k));
-							topedge.add(co.get(k));
-							a = a + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								addtop[a][0] = co.get(j);
+								addtop[a][1] = co.get(k);
+								toplist.add(co.get(j));
+								toplist.add(co.get(k));
+								topedge.add(co.get(k));
+								a = a + 1;
+								break;
+							}
 						}
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
-							addtop[a][0] = co.get(k);
-							addtop[a][1] = co.get(j);
-							toplist.add(co.get(k));
-							toplist.add(co.get(j));
-							topedge.add(co.get(j));
-							a = a + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								addtop[a][0] = co.get(k);
+								addtop[a][1] = co.get(j);
+								toplist.add(co.get(k));
+								toplist.add(co.get(j));
+								topedge.add(co.get(j));
+								a = a + 1;
+								break;
+							}
 						}
 					}
 				}
@@ -138,22 +169,48 @@ public class ConstructTOPs {
 				for(int k = 0; k < co.size(); k++){
 					if(type[co.get(k)].equals("M") && !toplist.contains(co.get(k))){
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
-							multop[m][0] = co.get(j);
-							multop[m][1] = co.get(k);
-							toplist.add(co.get(j));
-							toplist.add(co.get(k));
-							topedge.add(co.get(k));
-							m = m + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								multop[m][0] = co.get(j);
+								multop[m][1] = co.get(k);
+								toplist.add(co.get(j));
+								toplist.add(co.get(k));
+								topedge.add(co.get(k));
+								m = m + 1;
+								break;
+							}
 						}
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
-							multop[m][0] = co.get(k);
-							multop[m][1] = co.get(j);
-							toplist.add(co.get(k));
-							toplist.add(co.get(j));
-							topedge.add(co.get(j));
-							m = m + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								multop[m][0] = co.get(k);
+								multop[m][1] = co.get(j);
+								toplist.add(co.get(k));
+								toplist.add(co.get(j));
+								topedge.add(co.get(j));
+								m = m + 1;
+								break;
+							}
 						}
 					}
 				}
@@ -163,22 +220,48 @@ public class ConstructTOPs {
 				for(int k = 0; k < co.size(); k++){
 					if(type[co.get(k)].equals("S") && !toplist.contains(co.get(k))){
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
-							subtop[s][0] = co.get(j);
-							subtop[s][1] = co.get(k);
-							toplist.add(co.get(j));
-							toplist.add(co.get(k));
-							topedge.add(co.get(k));
-							s = s + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								subtop[s][0] = co.get(j);
+								subtop[s][1] = co.get(k);
+								toplist.add(co.get(j));
+								toplist.add(co.get(k));
+								topedge.add(co.get(k));
+								s = s + 1;
+								break;
+							}
 						}
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
-							subtop[s][0] = co.get(k);
-							subtop[s][1] = co.get(j);
-							toplist.add(co.get(k));
-							toplist.add(co.get(j));
-							topedge.add(co.get(j));
-							s = s + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								subtop[s][0] = co.get(k);
+								subtop[s][1] = co.get(j);
+								toplist.add(co.get(k));
+								toplist.add(co.get(j));
+								topedge.add(co.get(j));
+								s = s + 1;
+								break;
+							}
 						}
 					}
 				}
@@ -188,22 +271,48 @@ public class ConstructTOPs {
 				for(int k = 0; k < co.size(); k++){
 					if(type[co.get(k)].equals("D") && !toplist.contains(co.get(k))){
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
-							divtop[d][0] = co.get(j);
-							divtop[d][1] = co.get(k);
-							toplist.add(co.get(j));
-							toplist.add(co.get(k));
-							topedge.add(co.get(k));
-							d = d + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								divtop[d][0] = co.get(j);
+								divtop[d][1] = co.get(k);
+								toplist.add(co.get(j));
+								toplist.add(co.get(k));
+								topedge.add(co.get(k));
+								d = d + 1;
+								break;
+							}
 						}
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
-							divtop[d][0] = co.get(k);
-							divtop[d][1] = co.get(j);
-							toplist.add(co.get(k));
-							toplist.add(co.get(j));
-							topedge.add(co.get(j));
-							d = d + 1;
-							break;
+							boolean dd = false;
+							for(int ii = 0; ii < dd1.size(); ii++){
+								for(int jj = 0; jj < dd2.size(); jj++){
+									if(dd1.get(ii) == co.get(k)){
+										if(dd2.get(jj) == co.get(j)){
+											dd = true;
+											break;
+										}
+									}
+								}
+							}
+							if(!dd){
+								divtop[d][0] = co.get(k);
+								divtop[d][1] = co.get(j);
+								toplist.add(co.get(k));
+								toplist.add(co.get(j));
+								topedge.add(co.get(j));
+								d = d + 1;
+								break;
+							}
 						}
 					}
 				}

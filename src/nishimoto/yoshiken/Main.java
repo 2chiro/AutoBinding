@@ -162,6 +162,7 @@ public class Main extends JFrame implements ActionListener{
 	}
 
 	public void goBinding(){
+		long start = System.currentTimeMillis();
 		String outname = null;
 		JFileChooser fc1 = new JFileChooser(getDirPath());
 		FileFilter filter3 = new FileNameExtensionFilter("DATファイル(*.dat)", "dat");
@@ -383,5 +384,7 @@ public class Main extends JFrame implements ActionListener{
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
+		long end = System.currentTimeMillis();
+		System.out.println((end - start)  + "ms");
 	}
 }

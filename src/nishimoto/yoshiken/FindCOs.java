@@ -6,9 +6,18 @@ import java.util.Collections;
 public class FindCOs {
 	private static ArrayList<Integer> co = new ArrayList<Integer>();
 	private static ArrayList<Integer> ni = new ArrayList<Integer>();
+	private static ArrayList<Integer> dep_data1 = new ArrayList<Integer>();
+	private static ArrayList<Integer> dep_data2 = new ArrayList<Integer>();
 
 	public static ArrayList<Integer> getCOs(){
 		return co;
+	}
+
+	public static ArrayList<Integer> getDep_Data1(){
+		return dep_data1;
+	}
+	public static ArrayList<Integer> getDep_Data2(){
+		return dep_data2;
 	}
 
 	public static void Basic(int[] ver1, int[] ver2, String[] type){
@@ -33,6 +42,11 @@ public class FindCOs {
 					x = OPInfo(ver1[i], ver1, ver2, type);
 					left.addAll(x);
 				}
+				if(type[op].equalsIgnoreCase(type[ver1[i]])){
+					System.out.println("データ依存：" + ver1[i] + ", " + op);
+					dep_data1.add(op);
+					dep_data2.add(ver1[i]);
+				}
 				for(int j = i - 1; j >= 0; j--){
 					if(op == ver2[j]){
 						if(type[ver1[j]].equals("I")){
@@ -42,6 +56,11 @@ public class FindCOs {
 							right.add(ver1[j]);
 							y = OPInfo(ver1[j], ver1, ver2, type);
 							right.addAll(y);
+						}
+						if(type[op].equalsIgnoreCase(type[ver1[i]])){
+							System.out.println("データ依存：" + ver1[i] + ", " + op);
+							dep_data1.add(op);
+							dep_data2.add(ver1[i]);
 						}
 						ed.add(j);
 						if(!ni.contains(ver1[j])){
@@ -115,6 +134,11 @@ public class FindCOs {
 						x = OPInfo(ver1[i], ver1, ver2, type);
 						left.addAll(x);
 					}
+					if(type[op].equalsIgnoreCase(type[ver1[i]])){
+						System.out.println("データ依存：" + ver1[i] + ", " + op);
+						dep_data1.add(op);
+						dep_data2.add(ver1[i]);
+					}
 					ne = true;
 				}
 				else{
@@ -125,6 +149,11 @@ public class FindCOs {
 						right.add(ver1[i]);
 						y = OPInfo(ver1[i], ver1, ver2, type);
 						right.addAll(y);
+					}
+					if(type[op].equalsIgnoreCase(type[ver1[i]])){
+						System.out.println("データ依存：" + ver1[i] + ", " + op);
+						dep_data1.add(op);
+						dep_data2.add(ver1[i]);
 					}
 				}
 				if(!ni.contains(ver1[i])){
