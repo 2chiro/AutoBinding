@@ -296,9 +296,7 @@ public class Main extends JFrame implements ActionListener{
 
 			while(true){
 				ConstructTOPs.resetCycleChanger();
-				System.out.println(1);
 				ConstructTOPs.Basic(co, vt, ei, ty, lf, a, s, m, d, mt);
-				System.out.println(2);
 				if(ConstructTOPs.getCycleChanger()){
 					for(int i = 0; i < lf.length; i++){
 						if(lf[i] != -1){

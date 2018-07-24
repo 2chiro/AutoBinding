@@ -119,7 +119,6 @@ public class ConstructTOPs {
 		int s = 0;
 		int d = 0;
 
-		System.out.println("a");
 		//phase 1 SDFGからTOPを生成
 		for(int j = 0; j < co.size(); j++){
 			//加算器（＋）
@@ -129,18 +128,10 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(k)){
+									if(dd2.get(ii) == co.get(j)){
+										dd = true;
+										break;
 									}
 								}
 							}
@@ -157,18 +148,10 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(j)){
+									if(dd2.get(ii) == co.get(k)){
+										dd = true;
+										break;
 									}
 								}
 							}
@@ -192,22 +175,16 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(k)){
+									if(dd2.get(ii) == co.get(j)){
+										dd = true;
+										break;
 									}
 								}
 							}
 							if(!dd){
+								System.out.println("J:" + co.get(j));
+								System.out.println("K:" + co.get(k));
 								multop[m][0] = co.get(j);
 								multop[m][1] = co.get(k);
 								toplist.add(co.get(j));
@@ -220,22 +197,16 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(j)){
+									if(dd2.get(ii) == co.get(k)){
+										dd = true;
+										break;
 									}
 								}
 							}
 							if(!dd){
+								System.out.println("J:" + co.get(j));
+								System.out.println("K:" + co.get(k));
 								multop[m][0] = co.get(k);
 								multop[m][1] = co.get(j);
 								toplist.add(co.get(k));
@@ -255,18 +226,10 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(k)){
+									if(dd2.get(ii) == co.get(j)){
+										dd = true;
+										break;
 									}
 								}
 							}
@@ -283,18 +246,10 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(j)){
+									if(dd2.get(ii) == co.get(k)){
+										dd = true;
+										break;
 									}
 								}
 							}
@@ -318,18 +273,10 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(k)){
+									if(dd2.get(ii) == co.get(j)){
+										dd = true;
+										break;
 									}
 								}
 							}
@@ -346,18 +293,10 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								for(int jj = 0; jj < dd2.size(); jj++){
-									if(dd1.get(ii) == co.get(k)){
-										if(dd2.get(jj) == co.get(j)){
-											dd = true;
-											break;
-										}
-									}
-									else if(dd1.get(ii) == co.get(j)){
-										if(dd2.get(jj) == co.get(k)){
-											dd = true;
-											break;
-										}
+								if(dd1.get(ii) == co.get(j)){
+									if(dd2.get(ii) == co.get(k)){
+										dd = true;
+										break;
 									}
 								}
 							}
@@ -432,7 +371,6 @@ public class ConstructTOPs {
 		addver1 = new ArrayList<Integer>();
 		addver2 = new ArrayList<Integer>();
 
-		System.out.println("b");
 		//phase 2 テスト演算を追加してTOPを生成
 		if(toplist.size() <= co.size() && md > a+m+s+d){
 			for(int j = 0; j < co.size(); j++){
@@ -467,7 +405,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("A");
@@ -484,7 +422,6 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								a = a + 1;
 							}
-							/*
 							else if(k == 3){
 								addedge.add(ae);
 								addtype.add("O");
@@ -494,7 +431,6 @@ public class ConstructTOPs {
 								addport.add("c");
 								ae = ae + 1;
 							}
-							*/
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -538,7 +474,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("M");
@@ -555,7 +491,6 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								m = m + 1;
 							}
-							/*
 							else if(k == 3){
 								addedge.add(ae);
 								addtype.add("O");
@@ -565,7 +500,6 @@ public class ConstructTOPs {
 								addport.add("c");
 								ae = ae + 1;
 							}
-							*/
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -609,7 +543,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("S");
@@ -626,7 +560,6 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								s = s + 1;
 							}
-							/*
 							else if(k == 3){
 								addedge.add(ae);
 								addtype.add("O");
@@ -636,7 +569,6 @@ public class ConstructTOPs {
 								addport.add("c");
 								ae = ae + 1;
 							}
-							*/
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -680,7 +612,7 @@ public class ConstructTOPs {
 						}
 					}
 					else{
-						for(int k = 0; k < 3; k++){
+						for(int k = 0; k < 4; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("D");
@@ -697,7 +629,6 @@ public class ConstructTOPs {
 								topedge.add(addver.get(ve));
 								d = d + 1;
 							}
-							/*
 							else if(k == 3){
 								addedge.add(ae);
 								addtype.add("O");
@@ -707,7 +638,6 @@ public class ConstructTOPs {
 								addport.add("c");
 								ae = ae + 1;
 							}
-							*/
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -841,12 +771,10 @@ public class ConstructTOPs {
 			}
 		}
 		*/
-		System.out.println("c");
 		//phase4 2つのextraテスト演算器の追加
 		if(md > a+m+s+d){
 			while(md > a + m + s + d){
 				//加算器
-				System.out.println("aa");
 				if(a < add){
 					boolean kk = false;
 					for(int j = 0; j < vertexId.length; j++){
@@ -861,7 +789,7 @@ public class ConstructTOPs {
 						}
 					}
 					if(!kk){
-						for(int k = 0; k < 6; k++){
+						for(int k = 0; k < 7; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("A");
@@ -886,6 +814,15 @@ public class ConstructTOPs {
 								addtop[a][1] = addver.get(ve);
 								a = a + 1;
 							}
+							else if(k == 6){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(3);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
+							}
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -900,7 +837,6 @@ public class ConstructTOPs {
 					newsdfglistener = true;
 				}
 				//乗算器
-				System.out.println("bb");
 				if(m < mult){
 					boolean kk = false;
 					for(int j = 0; j < vertexId.length; j++){
@@ -915,7 +851,7 @@ public class ConstructTOPs {
 						}
 					}
 					if(!kk){
-						for(int k = 0; k < 6; k++){
+						for(int k = 0; k < 7; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("M");
@@ -940,6 +876,15 @@ public class ConstructTOPs {
 								multop[m][1] = addver.get(ve);
 								m = m + 1;
 							}
+							else if(k == 6){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(3);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
+							}
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -954,7 +899,6 @@ public class ConstructTOPs {
 					newsdfglistener = true;
 				}
 				//減算器
-				System.out.println("cc");
 				if(m < mult){
 					boolean kk = false;
 					for(int j = 0; j < vertexId.length; j++){
@@ -969,7 +913,7 @@ public class ConstructTOPs {
 						}
 					}
 					if(!kk){
-						for(int k = 0; k < 6; k++){
+						for(int k = 0; k < 7; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("S");
@@ -994,6 +938,15 @@ public class ConstructTOPs {
 								subtop[s][1] = addver.get(ve);
 								s = s + 1;
 							}
+							else if(k == 6){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(3);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
+							}
 							else{
 								addedge.add(ae);
 								addtype.add("I");
@@ -1007,7 +960,6 @@ public class ConstructTOPs {
 
 					newsdfglistener = true;
 				}
-				System.out.println("dd");
 				//除算器
 				if(m < mult){
 					boolean kk = false;
@@ -1023,7 +975,7 @@ public class ConstructTOPs {
 						}
 					}
 					if(!kk){
-						for(int k = 0; k < 6; k++){
+						for(int k = 0; k < 7; k++){
 							addver.add(av);
 							if(k == 2){
 								addtype.add("D");
@@ -1047,6 +999,15 @@ public class ConstructTOPs {
 								divtop[d][0] = addver.get(ve - 3);
 								divtop[d][1] = addver.get(ve);
 								d = d + 1;
+							}
+							else if(k == 6){
+								addedge.add(ae);
+								addtype.add("O");
+								addlife.add(3);
+								addver1.add(addver.get(ve - 1));
+								addver2.add(addver.get(ve));
+								addport.add("c");
+								ae = ae + 1;
 							}
 							else{
 								addedge.add(ae);

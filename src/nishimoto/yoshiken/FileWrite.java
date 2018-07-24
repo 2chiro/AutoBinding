@@ -131,6 +131,8 @@ public class FileWrite {
 			int[] ver1 = FileRead.getVer1();
 			int[] ver2 = FileRead.getVer2();
 			String[] port = FileRead.getPort();
+			double[] axis_x = FileRead.getAxis_X();
+			double[] axis_y = FileRead.getAxis_Y();
 
 			ArrayList<Integer> addver = ConstructTOPs.getAddVer();
 			ArrayList<String> addtype = ConstructTOPs.getAddType();
@@ -141,22 +143,27 @@ public class FileWrite {
 			ArrayList<Integer> addver2 = ConstructTOPs.getAddVer2();
 			ArrayList<String> addport = ConstructTOPs.getAddPort();
 
-			pw.println("#add=>" + add + " sub=>" + sub + " multi=>" + mult + " div=>" + div);
+			//pw.println("#add=>" + add + " sub=>" + sub + " multi=>" + mult + " div=>" + div);
+			pw.println("add. " + String.format("%1$9d", add));
+			pw.println("sub. " + String.format("%1$9d", sub));
+			pw.println("mult. " + String.format("%1$8d", mult));
+			pw.println("div. " + String.format("%1$9d", div));
+
 			pw.println("--vertex");
-			pw.println("#vertex_ID\ttype\tlifetime");
+			//pw.println("#vertex_ID\ttype\tlifetime");
 			for(int i = 0; i < ver.length; i++){
 				if(type[i].equals("I") || type[i].equals("O")){
 					life[i] = -1;
 				}
-				pw.println(ver[i] + "\t" + type[i] + "\t" + life[i]);
+				pw.println(ver[i] + "\t" + type[i] + "\t" + life[i] + "\t" + String.format("%.1f", axis_x[i]) + "\t" + String.format("%.1f", axis_y[i]));
 			}
 			for(int i = 0; i < addver.size(); i++){
 				pw.println(addver.get(i) + "\t" + addtype.get(i) + "\t" + addlife.get(i) + "\twangtest");
 			}
-			pw.print("\n");
+			//pw.print("\n");
 
 			pw.println("--edge");
-			pw.println("#edge_ID\tedge(ver1\tver2)\tport");
+			//pw.println("#edge_ID\tedge(ver1\tver2)\tport");
 			for(int i = 0; i < edge.length; i++){
 				pw.println(edge[i] + "\t" + ver1[i] + "\t" + ver2[i] + "\t" + port[i]);
 			}

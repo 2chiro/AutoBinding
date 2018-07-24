@@ -20,6 +20,9 @@ public class FileRead {
 	private static int mult = 0;
 	private static int div = 0;
 
+	private static double[] axis_x;
+	private static double[] axis_y;
+
 	public static int[] getVertex(){
 		return vertex;
 	}
@@ -52,6 +55,13 @@ public class FileRead {
 	}
 	public static int getDiv(){
 		return div;
+	}
+
+	public static double[] getAxis_X(){
+		return axis_x;
+	}
+	public static double[] getAxis_Y(){
+		return axis_y;
 	}
 
 	public static void input(String path){
@@ -138,6 +148,8 @@ public class FileRead {
 		ver1 = new int[li];
 		ver2 = new int[li];
 		port = new String[li];
+		axis_x = new double[vi];
+		axis_y = new double[vi];
 
 		int ve = 0;
 		int le = 0;
@@ -167,6 +179,18 @@ public class FileRead {
 				v = false;
 				l = true;
 				ha = true;
+			}
+			else if(imars[0].equals("add.")){
+				add = Integer.parseInt(imars[1]);
+			}
+			else if(imars[0].equals("sub.")){
+				sub = Integer.parseInt(imars[1]);
+			}
+			else if(imars[0].equals("mult.")){
+				mult = Integer.parseInt(imars[1]);
+			}
+			else if(imars[0].equals("div.")){
+				div = Integer.parseInt(imars[1]);
 			}
 			if(b == '#'){
 				imars[0] = imars[0].replaceAll("#", "");
@@ -198,6 +222,10 @@ public class FileRead {
 					vertex[ve] = Integer.parseInt(imars[0]);
 					type[ve] = imars[1];
 					life[ve] = Integer.parseInt(imars[2]);
+					if(imars.length > 2){
+						axis_x[ve] = Double.parseDouble(imars[3]);
+						axis_y[ve] = Double.parseDouble(imars[4]);
+					}
 					ve = ve + 1;
 				}
 				else if(l){
