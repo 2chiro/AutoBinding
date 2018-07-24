@@ -440,5 +440,26 @@ public class ModuleAllocation {
 				}
 			}
 		}
+		//デバッグ
+		for(int i = 0; i < addops.length; i++){
+			for(int j = 0; j < addops[i].length; j++){
+				System.out.println("addops[" + i + "][" + j + "]");
+			}
+		}
+		for(int i = 0; i < multops.length; i++){
+			for(int j = 0; j < multops[i].length; j++){
+				System.out.println("multops[" + i + "][" + j + "]");
+			}
+		}
+		for(int i = 0; i < subops.length; i++){
+			for(int j = 0; j < subops[i].length; j++){
+				System.out.println("subops[" + i + "][" + j + "]");
+			}
+		}
+		for(int i = 0; i < divops.length; i++){
+			for(int j = 0; j < divops[i].length; j++){
+				System.out.println("divops[" + i + "][" + j + "]");
+			}
+		}
 	}
 }

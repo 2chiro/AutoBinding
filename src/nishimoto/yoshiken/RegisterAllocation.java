@@ -24,6 +24,7 @@ public class RegisterAllocation {
 	}
 
 	public static void Basic(int[] edgeId, int[] start, int[] end, int[] chou, int maxtime){
+		System.out.println("edgeId-length:" + edgeId.length + " maxtime:" + maxtime);
 		int t = 0;
 		regs = null;
 		regs = new int[edgeId.length][maxtime];

@@ -70,23 +70,19 @@ public class LifetimeAnalysis {
 					}
 				}
 			}
-			if(lifetime[ver1[i]] == -1){
-				if(type[ver1[i]].equals("I")){
-					lifetime[ver1[i]]= 0;
-				}
+			if(type[ver1[i]].equals("I")){
+				lifetime[ver1[i]]= 0;
 			}
-			if(lifetime[ver2[i]] == -1){
-				if(type[ver2[i]].equals("O")){
-					if(x == 0){
-						for(int j = 0; j < lifetime.length; j++){
-							if(x < lifetime[j]){
-								x = lifetime[j];
-							}
+			if(type[ver2[i]].equals("O")){
+				if(x == 0){
+					for(int j = 0; j < lifetime.length; j++){
+						if(x < lifetime[j]){
+							x = lifetime[j];
 						}
-						x = x + 1;
 					}
-					lifetime[ver2[i]] = x;
+					x = x + 1;
 				}
+				lifetime[ver2[i]] = x;
 			}
 			end[i] = lifetime[ver2[i]];
 			start[i] = lifetime[ver1[i]] + 1;

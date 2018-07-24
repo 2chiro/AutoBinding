@@ -184,13 +184,17 @@ public class Main extends JFrame implements ActionListener{
 		int m = FileRead.getMult();
 		int d = FileRead.getDiv();
 
-		LifetimeAnalysis.Basic(ei, v1, v2, ei, ty, lf);
-		int[] st = LifetimeAnalysis.getStart();
-		int[] ed = LifetimeAnalysis.getEnd();
-		int[] ch = LifetimeAnalysis.getKab();
-		int mt = LifetimeAnalysis.getMaxtime();
+		int[] st;
+		int[] ed;
+		int[] ch;
+		int mt;
 
 		if(mode == 0){
+			LifetimeAnalysis.Basic(ei, v1, v2, ei, ty, lf);
+			st = LifetimeAnalysis.getStart();
+			ed = LifetimeAnalysis.getEnd();
+			ch = LifetimeAnalysis.getKab();
+			mt = LifetimeAnalysis.getMaxtime();
 			ModuleAllocation.Basic(a, s, m, d, vt, ty, lf);
 			RegisterAllocation.Basic(ei, st, ed, ch, mt);
 			FileWrite.output(outname);
@@ -290,19 +294,20 @@ public class Main extends JFrame implements ActionListener{
 		}
 		**/
 		else if(mode == 1){
-			ModuleAllocation.resetInModule();
-			FindCOs.Basic(v1, v2, ty);
-			ArrayList<Integer> co = FindCOs.getCOs();
-
 			while(true){
 				ConstructTOPs.resetCycleChanger();
+				ModuleAllocation.resetInModule();
+				FindCOs.Basic(v1, v2, ty);
+				ArrayList<Integer> co = FindCOs.getCOs();
+				LifetimeAnalysis.Basic(ei, v1, v2, ei, ty, lf);
+				st = LifetimeAnalysis.getStart();
+				ed = LifetimeAnalysis.getEnd();
+				ch = LifetimeAnalysis.getKab();
+				mt = LifetimeAnalysis.getMaxtime();
+				System.out.println("mt:" + mt);
 				ConstructTOPs.Basic(co, vt, ei, ty, lf, a, s, m, d, mt);
 				if(ConstructTOPs.getCycleChanger()){
-					for(int i = 0; i < lf.length; i++){
-						if(lf[i] != -1){
-							lf[i] = lf[i] + 1;
-						}
-					}
+					mt = mt + 1;
 				}
 				else{
 					break;
