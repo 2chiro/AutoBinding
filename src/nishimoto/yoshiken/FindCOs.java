@@ -43,7 +43,7 @@ public class FindCOs {
 					left.addAll(x);
 				}
 				if(type[op].equalsIgnoreCase(type[ver1[i]])){
-					System.out.println("データ依存：" + ver1[i] + ", " + op);
+					System.out.println("dep_data:" + ver1[i] + ", " + op);
 					dep_data1.add(op);
 					dep_data2.add(ver1[i]);
 				}
@@ -58,7 +58,7 @@ public class FindCOs {
 							right.addAll(y);
 						}
 						if(type[op].equalsIgnoreCase(type[ver1[i]])){
-							System.out.println("データ依存：" + ver1[i] + ", " + op);
+							System.out.println("dep_data:" + ver1[i] + ", " + op);
 							dep_data1.add(op);
 							dep_data2.add(ver1[i]);
 						}
@@ -92,6 +92,11 @@ public class FindCOs {
 						if(!co.contains(op)){
 							co.add(op);
 						}
+					}
+					else {
+						System.out.println("dep_data:" + left.get(0) + ", " + right.get(0));
+						dep_data1.add(right.get(0));
+						dep_data2.add(left.get(0));
 					}
 				}
 				//デバッグ
@@ -135,7 +140,7 @@ public class FindCOs {
 						left.addAll(x);
 					}
 					if(type[op].equalsIgnoreCase(type[ver1[i]])){
-						System.out.println("データ依存：" + ver1[i] + ", " + op);
+						System.out.println("dep_data:" + ver1[i] + ", " + op);
 						dep_data1.add(op);
 						dep_data2.add(ver1[i]);
 					}
@@ -151,7 +156,7 @@ public class FindCOs {
 						right.addAll(y);
 					}
 					if(type[op].equalsIgnoreCase(type[ver1[i]])){
-						System.out.println("データ依存：" + ver1[i] + ", " + op);
+						System.out.println("dep_data:" + ver1[i] + ", " + op);
 						dep_data1.add(op);
 						dep_data2.add(ver1[i]);
 					}
@@ -183,6 +188,11 @@ public class FindCOs {
 				if(!co.contains(op)){
 					co.add(op);
 				}
+			}
+			else {
+				System.out.println("dep_data:" + left.get(0) + ", " + right.get(0));
+				dep_data1.add(right.get(0));
+				dep_data2.add(left.get(0));
 			}
 		}
 		//デバッグ

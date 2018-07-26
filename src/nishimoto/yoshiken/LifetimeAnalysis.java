@@ -125,18 +125,14 @@ public class LifetimeAnalysis {
 		}
 		int m = 0;
 		for(int i = addedge.size() - edgeId.size(); i < addedge.size(); i++){
-			if(addlifetime.get(ver1.get(m)) == -1){
-				if(addtype.get(ver1.get(m)).equals("I")){
-					lifetime2[ver1.get(m)] = 0;
-				}
+			if(addtype.get(ver1.get(m)).equals("I")){
+				lifetime2[ver1.get(m)] = 0;
 			}
 			else{
 				lifetime2[ver1.get(m)] = addlifetime.get(ver1.get(m));
 			}
-			if(addlifetime.get(ver2.get(m)) == -1){
-				if(addtype.get(ver2.get(m)).equals("O")){
-					lifetime2[ver2.get(m)] = maxtime;
-				}
+			if(addtype.get(ver2.get(m)).equals("O") || addtype.get(ver2.get(m)).equals("R")){
+				lifetime2[ver2.get(m)] = maxtime;
 			}
 			else{
 				lifetime2[ver2.get(m)] = addlifetime.get(ver2.get(m));

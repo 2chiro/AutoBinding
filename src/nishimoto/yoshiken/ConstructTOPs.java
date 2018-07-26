@@ -73,6 +73,10 @@ public class ConstructTOPs {
 		return cyclechanger;
 	}
 
+	public static void resetNewSDFGListener() {
+		newsdfglistener = false;
+	}
+
 	public static boolean getNewSDFGListener(){
 		return newsdfglistener;
 	}
@@ -96,16 +100,16 @@ public class ConstructTOPs {
 		}
 		for(int i = 0; i < type.length; i++){
 			if(type[i].equals("A")){
-				addrc[lifetime[i]-1] = addrc[lifetime[i]-1] + 1;
+				addrc[lifetime[i]] = addrc[lifetime[i]] + 1;
 			}
 			else if(type[i].equals("S")){
-				subrc[lifetime[i]-1] = subrc[lifetime[i]-1] + 1;
+				subrc[lifetime[i]] = subrc[lifetime[i]] + 1;
 			}
 			else if(type[i].equals("M")){
-				mulrc[lifetime[i]-1] = mulrc[lifetime[i]-1] + 1;
+				mulrc[lifetime[i]] = mulrc[lifetime[i]] + 1;
 			}
 			else if(type[i].equals("D")){
-				divrc[lifetime[i]-1] = divrc[lifetime[i]-1] + 1;
+				divrc[lifetime[i]] = divrc[lifetime[i]] + 1;
 			}
 
 		}
@@ -132,11 +136,9 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(k)){
-									if(dd2.get(ii) == co.get(j)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -152,11 +154,9 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(j)){
-									if(dd2.get(ii) == co.get(k)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -179,11 +179,9 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(k)){
-									if(dd2.get(ii) == co.get(j)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -201,11 +199,9 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(j)){
-									if(dd2.get(ii) == co.get(k)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -230,11 +226,9 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(k)){
-									if(dd2.get(ii) == co.get(j)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -250,11 +244,9 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(j)){
-									if(dd2.get(ii) == co.get(k)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -277,11 +269,9 @@ public class ConstructTOPs {
 						if(lifetime[co.get(k)] == lifetime[co.get(j)] + 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(k)){
-									if(dd2.get(ii) == co.get(j)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -297,11 +287,9 @@ public class ConstructTOPs {
 						else if(lifetime[co.get(k)] == lifetime[co.get(j)] - 1){
 							boolean dd = false;
 							for(int ii = 0; ii < dd1.size(); ii++){
-								if(dd1.get(ii) == co.get(j)){
-									if(dd2.get(ii) == co.get(k)){
-										dd = true;
-										break;
-									}
+								if((dd1.get(ii) == co.get(k) && dd2.get(ii) == co.get(j)) || (dd1.get(ii) == co.get(j) && dd2.get(ii) == co.get(k))){
+									dd = true;
+									break;
 								}
 							}
 							if(!dd){
@@ -380,41 +368,42 @@ public class ConstructTOPs {
 			for(int j = 0; j < co.size(); j++){
 				//加算器
 				if(type[co.get(j)].equals("A") && !toplist.contains(co.get(j)) && a < add){
-					if(lifetime[co.get(j)] != 1){
-						if(lifetime[co.get(j)] + 1 < max){
-							if(addrc[lifetime[co.get(j)] + 1] >= add){
-								for(int k = 0; k < 3; k++){
-									addver.add(av);
-									if(k == 2){
-										addtype.add("A");
-										addlife.add(lifetime[co.get(j)]-1);
-										addtop[a][0] = addver.get(ve);
-										addtop[a][1] = co.get(j);
-										addver1.add(addver.get(ve - 2));
-										addver1.add(addver.get(ve - 1));
-										addver2.add(addver.get(ve));
-										addver2.add(addver.get(ve));
-										addport.add("l");
-										addport.add("r");
-										toplist.add(co.get(j));
-										topedge.add(co.get(j));
-										a = a + 1;
-									}
-									else{
-										addedge.add(ae);
-										addtype.add("I");
-										addlife.add(-1);
-										ae = ae + 1;
-									}
-									ve = ve + 1;
-									av = av + 1;
+					if(addrc[lifetime[co.get(j)] - 1] < add && lifetime[co.get(j)] - 1 != 0){
+						if(lifetime[co.get(j)] > 1) {
+							for(int k = 0; k < 3; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("A");
+									addlife.add(lifetime[co.get(j)]-1);
+									addtop[a][0] = addver.get(ve);
+									addtop[a][1] = co.get(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									toplist.add(co.get(j));
+									topedge.add(co.get(j));
+									addrc[lifetime[co.get(j)] - 1] = addrc[lifetime[co.get(j)] - 1] + 1;
+									a = a + 1;
 								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
 						}
 					}
 					else{
+						System.out.println("co.get:" + co.get(j));
 						if(lifetime[co.get(j)] + 1 < max){
-							if(addrc[lifetime[co.get(j)] + 1] >= add){
+							if(addrc[lifetime[co.get(j)] + 1] < add){
 								for(int k = 0; k < 4; k++){
 									addver.add(av);
 									if(k == 2){
@@ -430,11 +419,12 @@ public class ConstructTOPs {
 										addport.add("r");
 										toplist.add(co.get(j));
 										topedge.add(addver.get(ve));
+										addrc[lifetime[co.get(j)] + 1] = addrc[lifetime[co.get(j)] + 1] + 1;
 										a = a + 1;
 									}
 									else if(k == 3){
 										addedge.add(ae);
-										addtype.add("O");
+										addtype.add("R");
 										addlife.add(lifetime[co.get(j)]+2);
 										addver1.add(addver.get(ve - 1));
 										addver2.add(addver.get(ve));
@@ -450,48 +440,48 @@ public class ConstructTOPs {
 									ve = ve + 1;
 									av = av + 1;
 								}
+								newsdfglistener = true;
 							}
 						}
 					}
-					newsdfglistener = true;
 				}
 				//乗算器
 				if(type[co.get(j)].equals("M") && !toplist.contains(co.get(j)) && m < mult){
-					if(lifetime[co.get(j)] != 1){
-						if(lifetime[co.get(j)] + 1 < max){
-							if(mulrc[lifetime[co.get(j)] + 1] >= mult){
-								for(int k = 0; k < 3; k++){
-									addver.add(av);
-									if(k == 2){
-										addtype.add("M");
-										addlife.add(lifetime[co.get(j)]-1);
-										multop[m][0] = addver.get(ve);
-										multop[m][1] = co.get(j);
-										addver1.add(addver.get(ve - 2));
-										addver1.add(addver.get(ve - 1));
-										addver2.add(addver.get(ve));
-										addver2.add(addver.get(ve));
-										addport.add("l");
-										addport.add("r");
-										toplist.add(co.get(j));
-										topedge.add(co.get(j));
-										m = m + 1;
-									}
-									else{
-										addedge.add(ae);
-										addtype.add("I");
-										addlife.add(-1);
-										ae = ae + 1;
-									}
-									ve = ve + 1;
-									av = av + 1;
+					if(mulrc[lifetime[co.get(j)] - 1] < mult && lifetime[co.get(j)] - 1 != 0){
+						if(lifetime[co.get(j)] > 1) {
+							for(int k = 0; k < 3; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("M");
+									addlife.add(lifetime[co.get(j)]-1);
+									multop[m][0] = addver.get(ve);
+									multop[m][1] = co.get(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									toplist.add(co.get(j));
+									topedge.add(co.get(j));
+									mulrc[lifetime[co.get(j)] - 1] = mulrc[lifetime[co.get(j)] - 1] + 1;
+									m = m + 1;
 								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
 						}
 					}
 					else{
 						if(lifetime[co.get(j)] + 1 < max){
-							if(mulrc[lifetime[co.get(j)] + 1] >= mult){
+							if(mulrc[lifetime[co.get(j)] + 1] < mult){
 								for(int k = 0; k < 4; k++){
 									addver.add(av);
 									if(k == 2){
@@ -507,11 +497,12 @@ public class ConstructTOPs {
 										addport.add("r");
 										toplist.add(co.get(j));
 										topedge.add(addver.get(ve));
+										mulrc[lifetime[co.get(j)] + 1] = mulrc[lifetime[co.get(j)] + 1] + 1;
 										m = m + 1;
 									}
 									else if(k == 3){
 										addedge.add(ae);
-										addtype.add("O");
+										addtype.add("R");
 										addlife.add(lifetime[co.get(j)]+2);
 										addver1.add(addver.get(ve - 1));
 										addver2.add(addver.get(ve));
@@ -527,48 +518,48 @@ public class ConstructTOPs {
 									ve = ve + 1;
 									av = av + 1;
 								}
+								newsdfglistener = true;
 							}
 						}
 					}
-					newsdfglistener = true;
 				}
 				//減算器
 				if(type[co.get(j)].equals("S") && !toplist.contains(co.get(j)) && s < sub){
-					if(lifetime[co.get(j)] != 1){
-						if(lifetime[co.get(j)] + 1 < max){
-							if(subrc[lifetime[co.get(j)] + 1] >= sub){
-								for(int k = 0; k < 3; k++){
-									addver.add(av);
-									if(k == 2){
-										addtype.add("S");
-										addlife.add(lifetime[co.get(j)]-1);
-										subtop[s][0] = addver.get(ve);
-										subtop[s][1] = co.get(j);
-										addver1.add(addver.get(ve - 2));
-										addver1.add(addver.get(ve - 1));
-										addver2.add(addver.get(ve));
-										addver2.add(addver.get(ve));
-										addport.add("l");
-										addport.add("r");
-										toplist.add(co.get(j));
-										topedge.add(co.get(j));
-										s = s + 1;
-									}
-									else{
-										addedge.add(ae);
-										addtype.add("I");
-										addlife.add(-1);
-										ae = ae + 1;
-									}
-									ve = ve + 1;
-									av = av + 1;
+					if(subrc[lifetime[co.get(j)] - 1] < sub && lifetime[co.get(j)] - 1 != 0){
+						if(lifetime[co.get(j)] > 1) {
+							for(int k = 0; k < 3; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("S");
+									addlife.add(lifetime[co.get(j)]-1);
+									subtop[s][0] = addver.get(ve);
+									subtop[s][1] = co.get(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									toplist.add(co.get(j));
+									topedge.add(co.get(j));
+									subrc[lifetime[co.get(j)] - 1] = subrc[lifetime[co.get(j)] - 1] + 1;
+									s = s + 1;
 								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
 						}
 					}
 					else{
 						if(lifetime[co.get(j)] + 1 < max){
-							if(subrc[lifetime[co.get(j)] + 1] >= sub){
+							if(subrc[lifetime[co.get(j)] + 1] < sub){
 								for(int k = 0; k < 4; k++){
 									addver.add(av);
 									if(k == 2){
@@ -584,11 +575,12 @@ public class ConstructTOPs {
 										addport.add("r");
 										toplist.add(co.get(j));
 										topedge.add(addver.get(ve));
+										subrc[lifetime[co.get(j)] + 1] = subrc[lifetime[co.get(j)] + 1] + 1;
 										s = s + 1;
 									}
 									else if(k == 3){
 										addedge.add(ae);
-										addtype.add("O");
+										addtype.add("R");
 										addlife.add(lifetime[co.get(j)]+2);
 										addver1.add(addver.get(ve - 1));
 										addver2.add(addver.get(ve));
@@ -604,48 +596,48 @@ public class ConstructTOPs {
 									ve = ve + 1;
 									av = av + 1;
 								}
+								newsdfglistener = true;
 							}
 						}
 					}
-					newsdfglistener = true;
 				}
 				//除算器
 				if(type[co.get(j)].equals("D") && !toplist.contains(co.get(j)) && d < div){
-					if(lifetime[co.get(j)] != 1){
-						if(lifetime[co.get(j)] + 1 < max){
-							if(divrc[lifetime[co.get(j)] + 1] >= div){
-								for(int k = 0; k < 3; k++){
-									addver.add(av);
-									if(k == 2){
-										addtype.add("D");
-										addlife.add(lifetime[co.get(j)]-1);
-										divtop[d][0] = addver.get(ve);
-										divtop[d][1] = co.get(j);
-										addver1.add(addver.get(ve - 2));
-										addver1.add(addver.get(ve - 1));
-										addver2.add(addver.get(ve));
-										addver2.add(addver.get(ve));
-										addport.add("l");
-										addport.add("r");
-										toplist.add(co.get(j));
-										topedge.add(co.get(j));
-										d = d + 1;
-									}
-									else{
-										addedge.add(ae);
-										addtype.add("I");
-										addlife.add(-1);
-										ae = ae + 1;
-									}
-									ve = ve + 1;
-									av = av + 1;
+					if(divrc[lifetime[co.get(j)] - 1] < div && lifetime[co.get(j)] - 1 != 0){
+						if(lifetime[co.get(j)] > 1) {
+							for(int k = 0; k < 3; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("D");
+									addlife.add(lifetime[co.get(j)]-1);
+									divtop[d][0] = addver.get(ve);
+									divtop[d][1] = co.get(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									toplist.add(co.get(j));
+									topedge.add(co.get(j));
+									divrc[lifetime[co.get(j)] - 1] = divrc[lifetime[co.get(j)] - 1] + 1;
+									d = d + 1;
 								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
 						}
 					}
 					else{
 						if(lifetime[co.get(j)] + 1 < max){
-							if(divrc[lifetime[co.get(j)] + 1] >= div){
+							if(divrc[lifetime[co.get(j)] + 1] < div){
 								for(int k = 0; k < 4; k++){
 									addver.add(av);
 									if(k == 2){
@@ -661,11 +653,12 @@ public class ConstructTOPs {
 										addport.add("r");
 										toplist.add(co.get(j));
 										topedge.add(addver.get(ve));
+										divrc[lifetime[co.get(j)] + 1] = divrc[lifetime[co.get(j)] + 1] + 1;
 										d = d + 1;
 									}
 									else if(k == 3){
 										addedge.add(ae);
-										addtype.add("O");
+										addtype.add("R");
 										addlife.add(lifetime[co.get(j)]+2);
 										addver1.add(addver.get(ve - 1));
 										addver2.add(addver.get(ve));
@@ -681,10 +674,10 @@ public class ConstructTOPs {
 									ve = ve + 1;
 									av = av + 1;
 								}
+								newsdfglistener = true;
 							}
 						}
 					}
-					newsdfglistener = true;
 				}
 			}
 		}
@@ -813,250 +806,238 @@ public class ConstructTOPs {
 				//加算器
 				if(a < add){
 					boolean kk = false;
-					for(int j = 0; j < vertexId.length; j++){
-						if(type[vertexId[j]].equals("A")){
-							if(lifetime[vertexId[j]] == 1 || lifetime[vertexId[j]] == 2){
-								if(!toplist.contains(vertexId[j])){
-									kk = true;
-									cyclechanger = true;
-									break;
+					for(int j = 1; j < max - 1; j++) {
+						if(addrc[j] < add && addrc[j + 1] < add) {
+							for(int k = 0; k < 7; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("A");
+									addlife.add(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									addrc[j] = addrc[j] + 1;
 								}
+								else if(k == 5){
+									addtype.add("A");
+									addlife.add(j + 1);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									addtop[a][0] = addver.get(ve - 3);
+									addtop[a][1] = addver.get(ve);
+									addrc[j + 1] = addrc[j + 1] + 1;
+									a = a + 1;
+								}
+								else if(k == 6){
+									addedge.add(ae);
+									addtype.add("R");
+									addlife.add(j + 2);
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addport.add("c");
+									ae = ae + 1;
+								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
+							kk = true;
+							break;
 						}
 					}
-					if(!kk){
-						for(int k = 0; k < 7; k++){
-							addver.add(av);
-							if(k == 2){
-								addtype.add("A");
-								addlife.add(1);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-							}
-							else if(k == 5){
-								addtype.add("A");
-								addlife.add(2);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-								addtop[a][0] = addver.get(ve - 3);
-								addtop[a][1] = addver.get(ve);
-								a = a + 1;
-							}
-							else if(k == 6){
-								addedge.add(ae);
-								addtype.add("O");
-								addlife.add(3);
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addport.add("c");
-								ae = ae + 1;
-							}
-							else{
-								addedge.add(ae);
-								addtype.add("I");
-								addlife.add(-1);
-								ae = ae + 1;
-							}
-							ve = ve + 1;
-							av = av + 1;
-						}
+					if(!kk) {
+						cyclechanger = true;
 					}
-
-					newsdfglistener = true;
 				}
 				//乗算器
 				if(m < mult){
 					boolean kk = false;
-					for(int j = 0; j < vertexId.length; j++){
-						if(type[vertexId[j]].equals("M")){
-							if(lifetime[vertexId[j]] == 1 || lifetime[vertexId[j]] == 2){
-								if(!toplist.contains(vertexId[j])){
-									kk = true;
-									cyclechanger = true;
-									break;
+					for(int j = 1; j < max - 1; j++) {
+						if(mulrc[j] < mult && mulrc[j + 1] < mult) {
+							for(int k = 0; k < 7; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("M");
+									addlife.add(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									mulrc[j] = mulrc[j] + 1;
 								}
+								else if(k == 5){
+									addtype.add("M");
+									addlife.add(j + 1);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									multop[m][0] = addver.get(ve - 3);
+									multop[m][1] = addver.get(ve);
+									mulrc[j + 1] = mulrc[j + 1] + 1;
+									m = m + 1;
+								}
+								else if(k == 6){
+									addedge.add(ae);
+									addtype.add("R");
+									addlife.add(j + 2);
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addport.add("c");
+									ae = ae + 1;
+								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
+							kk = true;
+							break;
 						}
 					}
 					if(!kk){
-						for(int k = 0; k < 7; k++){
-							addver.add(av);
-							if(k == 2){
-								addtype.add("M");
-								addlife.add(1);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-							}
-							else if(k == 5){
-								addtype.add("M");
-								addlife.add(2);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-								multop[m][0] = addver.get(ve - 3);
-								multop[m][1] = addver.get(ve);
-								m = m + 1;
-							}
-							else if(k == 6){
-								addedge.add(ae);
-								addtype.add("O");
-								addlife.add(3);
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addport.add("c");
-								ae = ae + 1;
-							}
-							else{
-								addedge.add(ae);
-								addtype.add("I");
-								addlife.add(-1);
-								ae = ae + 1;
-							}
-							ve = ve + 1;
-							av = av + 1;
-						}
+						cyclechanger = true;
 					}
-
-					newsdfglistener = true;
 				}
 				//減算器
-				if(m < mult){
+				if(s < sub){
 					boolean kk = false;
-					for(int j = 0; j < vertexId.length; j++){
-						if(type[vertexId[j]].equals("S")){
-							if(lifetime[vertexId[j]] == 1 || lifetime[vertexId[j]] == 2){
-								if(!toplist.contains(vertexId[j])){
-									kk = true;
-									cyclechanger = true;
-									break;
+					for(int j = 1; j < max - 1; j++) {
+						if(subrc[j] < sub && subrc[j + 1] < sub) {
+							for(int k = 0; k < 7; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("S");
+									addlife.add(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									subrc[j] = subrc[j] + 1;
 								}
+								else if(k == 5){
+									addtype.add("S");
+									addlife.add(j + 1);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									subtop[s][0] = addver.get(ve - 3);
+									subtop[s][1] = addver.get(ve);
+									subrc[j + 1] = subrc[j + 1] + 1;
+									s = s + 1;
+								}
+								else if(k == 6){
+									addedge.add(ae);
+									addtype.add("R");
+									addlife.add(j + 2);
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addport.add("c");
+									ae = ae + 1;
+								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
+							kk = true;
+							break;
 						}
 					}
-					if(!kk){
-						for(int k = 0; k < 7; k++){
-							addver.add(av);
-							if(k == 2){
-								addtype.add("S");
-								addlife.add(1);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-							}
-							else if(k == 5){
-								addtype.add("S");
-								addlife.add(2);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-								subtop[s][0] = addver.get(ve - 3);
-								subtop[s][1] = addver.get(ve);
-								s = s + 1;
-							}
-							else if(k == 6){
-								addedge.add(ae);
-								addtype.add("O");
-								addlife.add(3);
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addport.add("c");
-								ae = ae + 1;
-							}
-							else{
-								addedge.add(ae);
-								addtype.add("I");
-								addlife.add(-1);
-								ae = ae + 1;
-							}
-							ve = ve + 1;
-							av = av + 1;
-						}
+					if(!kk) {
+						cyclechanger = true;
 					}
-
-					newsdfglistener = true;
 				}
 				//除算器
-				if(m < mult){
+				if(d < div){
 					boolean kk = false;
-					for(int j = 0; j < vertexId.length; j++){
-						if(type[vertexId[j]].equals("D")){
-							if(lifetime[vertexId[j]] == 1 || lifetime[vertexId[j]] == 2){
-								if(!toplist.contains(vertexId[j])){
-									kk = true;
-									cyclechanger = true;
-									break;
+					for(int j = 1; j < max - 1; j++) {
+						if(divrc[j] < div && divrc[j + 1] < div) {
+							for(int k = 0; k < 7; k++){
+								addver.add(av);
+								if(k == 2){
+									addtype.add("D");
+									addlife.add(j);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									divrc[j] = divrc[j] + 1;
 								}
+								else if(k == 5){
+									addtype.add("D");
+									addlife.add(j + 1);
+									addver1.add(addver.get(ve - 2));
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addver2.add(addver.get(ve));
+									addport.add("l");
+									addport.add("r");
+									divtop[d][0] = addver.get(ve - 3);
+									divtop[d][1] = addver.get(ve);
+									divrc[j + 1] = divrc[j + 1] + 1;
+									d = d + 1;
+								}
+								else if(k == 6){
+									addedge.add(ae);
+									addtype.add("R");
+									addlife.add(j + 2);
+									addver1.add(addver.get(ve - 1));
+									addver2.add(addver.get(ve));
+									addport.add("c");
+									ae = ae + 1;
+								}
+								else{
+									addedge.add(ae);
+									addtype.add("I");
+									addlife.add(-1);
+									ae = ae + 1;
+								}
+								ve = ve + 1;
+								av = av + 1;
 							}
+							newsdfglistener = true;
+							kk = true;
+							break;
 						}
 					}
 					if(!kk){
-						for(int k = 0; k < 7; k++){
-							addver.add(av);
-							if(k == 2){
-								addtype.add("D");
-								addlife.add(1);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-							}
-							else if(k == 5){
-								addtype.add("D");
-								addlife.add(2);
-								addver1.add(addver.get(ve - 2));
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addver2.add(addver.get(ve));
-								addport.add("l");
-								addport.add("r");
-								divtop[d][0] = addver.get(ve - 3);
-								divtop[d][1] = addver.get(ve);
-								d = d + 1;
-							}
-							else if(k == 6){
-								addedge.add(ae);
-								addtype.add("O");
-								addlife.add(3);
-								addver1.add(addver.get(ve - 1));
-								addver2.add(addver.get(ve));
-								addport.add("c");
-								ae = ae + 1;
-							}
-							else{
-								addedge.add(ae);
-								addtype.add("I");
-								addlife.add(-1);
-								ae = ae + 1;
-							}
-							ve = ve + 1;
-							av = av + 1;
-						}
+						cyclechanger = true;
 					}
-
-					newsdfglistener = true;
 				}
 				if(cyclechanger){
 					break;

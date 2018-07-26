@@ -289,6 +289,7 @@ public class Main extends JFrame implements ActionListener{
 				ModuleAllocation.Wang(atop, stop, mtop, dtop, a, s, m, d, vt1, ty1, lf1);
 				RegisterAllocation.Wang(top, ei2, ver1_2, st2, ed2, ch, mt);
 			}
+
 			FileWrite.output(outname);
 			FileRead.resetRC();
 		}
@@ -296,6 +297,7 @@ public class Main extends JFrame implements ActionListener{
 		else if(mode == 1){
 			while(true){
 				ConstructTOPs.resetCycleChanger();
+				ConstructTOPs.resetNewSDFGListener();
 				ModuleAllocation.resetInModule();
 				FindCOs.Basic(v1, v2, ty);
 				ArrayList<Integer> co = FindCOs.getCOs();
